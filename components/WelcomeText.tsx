@@ -4,7 +4,6 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import clsx from "clsx";
-import { SP } from "next/dist/shared/lib/utils";
 
 const renderText = (text: string, type: string) => {
   const splitText = [...text];
@@ -26,10 +25,21 @@ const renderText = (text: string, type: string) => {
 const WelcomeText = () => {
   const titleRef = useRef<HTMLDivElement>(null);
   const subtitleRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const containerTitle = titleRef.current;
+    const containerSubtitle = subtitleRef.current;
+
+    const handleMouseMove = (e: MouseEvent) => {};
+    const handleMouseLeave = (e: MouseEvent) => {};
+
+    containerTitle?.addEventListener("mousemove", handleMouseMove);
+    containerSubtitle?.addEventListener("mousemove", handleMouseMove);
+  }, []);
   return (
     <section id="welcome" className="">
-      <div>{renderText("Hey, welcome to my", "title")}</div>
-      <div>{renderText("Portfolio", "subtitle")}</div>
+      <div ref={titleRef}>{renderText("Hey, welcome to my", "title")}</div>
+      <div ref={subtitleRef}>{renderText("Portfolio", "subtitle")}</div>
     </section>
   );
 };
