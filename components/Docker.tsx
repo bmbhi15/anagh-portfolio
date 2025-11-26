@@ -2,8 +2,9 @@
 import { RefObject, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { dockApps } from "@/lib/constants";
+import { dockApps, WindowId } from "@/lib/constants";
 import { Tooltip } from "react-tooltip";
+import { useWindowStore } from "@/lib/zustand/store";
 
 const HEIGHT = {
   min_h: 0,
@@ -77,6 +78,7 @@ const addEventListenerToDock = (
 
 const Docker = () => {
   const containerRef = useRef<HTMLUListElement>(null);
+  const { windows, openWindow } = useWindowStore();
 
   useGSAP(() => {
     const removeListener = addEventListenerToDock(containerRef);
@@ -86,6 +88,11 @@ const Docker = () => {
       removeListener();
     };
   }, []);
+
+  const openAppWindow = (appId: WindowId) => {
+    openWindow(appId, null);
+    console.log(windows);
+  };
 
   return (
     <section id="dock">
@@ -97,6 +104,11 @@ const Docker = () => {
                 data-tooltip-id="dock-tooltip"
                 data-tooltip-content={app.name}
                 id={`dock-icon-${app.id}`}
+                onClick={() => {
+                  if (app.canOpen) {
+                    openAppWindow(app.id);
+                  }
+                }}
               >
                 <img src={`/images/${app.icon}`} alt={app.name} />
               </button>
