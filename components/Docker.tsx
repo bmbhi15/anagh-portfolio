@@ -31,9 +31,10 @@ const addEventListenerToDock = (
   containerRef: RefObject<HTMLUListElement | null>
 ) => {
   if (!containerRef.current) return;
-  const { left } = containerRef.current.getBoundingClientRect();
 
   const handleMouseMove = (e: MouseEvent) => {
+    if (!containerRef.current) return;
+    const { left } = containerRef.current.getBoundingClientRect();
     const iconElements = containerRef.current?.querySelectorAll("button");
 
     if (!iconElements) return;
@@ -42,11 +43,10 @@ const addEventListenerToDock = (
       const { max_s, min_s } = SCALE;
       const intensity = calculateIntensity(e, left, elem);
       const idSelector = `#${elem.id}`;
-      console.log(elem);
       gsap.to(idSelector, {
         y: min_h + (max_h - min_h) * intensity,
         scale: min_s + (max_s - min_s) * intensity,
-        duration: 0.5,
+        duration: 0.3,
       });
     });
   };
@@ -56,12 +56,12 @@ const addEventListenerToDock = (
 
     if (!iconElements) return;
     iconElements.forEach((elem, id) => {
-      const { min_h } = HEIGHT;
+      const { min_s } = SCALE;
       const idSelector = `#${elem.id}`;
       gsap.to(idSelector, {
         y: 0,
-        scale: 1,
-        duration: 0.5,
+        scale: min_s,
+        duration: 0.3,
       });
     });
   };
@@ -96,7 +96,7 @@ const Docker = () => {
               <button
                 data-tooltip-id="dock-tooltip"
                 data-tooltip-content={app.name}
-                id={app.name}
+                id={`dock-icon-${app.id}`}
               >
                 <img src={`/images/${app.icon}`} alt={app.name} />
               </button>
