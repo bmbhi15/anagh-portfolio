@@ -1,3 +1,13 @@
+export enum WindowId {
+  Finder = "finder",
+  Contact = "contact",
+  Resume = "resume",
+  Safari = "safari",
+  Photos = "photos",
+  Terminal = "terminal",
+  TxtFile = "txtfile",
+  ImgFile = "imgfile",
+}
 const navLinks = [
   {
     id: 1,
@@ -35,33 +45,50 @@ const navIcons = [
   },
 ];
 
-const dockApps = [
+interface DockWindowApp {
+  id: WindowId; // <-- typed against your WindowId enum
+  name: string;
+  icon: string;
+  canOpen: true;
+}
+
+// Special non-window item(s) like Trash
+interface DockStaticApp {
+  id: "trash";
+  name: string;
+  icon: string;
+  canOpen: false;
+}
+
+type DockApp = DockWindowApp | DockStaticApp;
+
+const dockApps: DockApp[] = [
   {
-    id: "finder",
+    id: WindowId.Finder,
     name: "Portfolio", // was "Finder"
     icon: "finder.png",
     canOpen: true,
   },
   {
-    id: "safari",
+    id: WindowId.Safari,
     name: "Articles", // was "Safari"
     icon: "safari.png",
     canOpen: true,
   },
   {
-    id: "photos",
+    id: WindowId.Photos,
     name: "Gallery", // was "Photos"
     icon: "photos.png",
     canOpen: true,
   },
   {
-    id: "contact",
+    id: WindowId.Contact,
     name: "Contact", // or "Get in touch"
     icon: "contact.png",
     canOpen: true,
   },
   {
-    id: "terminal",
+    id: WindowId.Terminal,
     name: "Skills", // was "Terminal"
     icon: "terminal.png",
     canOpen: true,
@@ -469,15 +496,23 @@ export const locations = {
 
 const INITIAL_Z_INDEX = 1000;
 
-const WINDOW_CONFIG = {
-  finder: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  contact: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  resume: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  safari: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  photos: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  terminal: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  txtfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+export interface WindowState<TData = unknown> {
+  isOpen: boolean;
+  zIndex: number;
+  data: TData | null;
+}
+
+export type WindowConfig = Record<WindowId, WindowState>;
+
+const WINDOW_CONFIG: WindowConfig = {
+  [WindowId.Finder]: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  [WindowId.Contact]: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  [WindowId.Resume]: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  [WindowId.Safari]: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  [WindowId.Photos]: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  [WindowId.Terminal]: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  [WindowId.TxtFile]: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  [WindowId.ImgFile]: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
 };
 
 export { INITIAL_Z_INDEX, WINDOW_CONFIG };
