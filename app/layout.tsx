@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
+import gsap from "gsap";
+import { Draggable } from "gsap/Draggable";
 import "./globals.css";
+
+gsap.registerPlugin(Draggable);
 
 export const metadata: Metadata = {
   title: "Anagh's Portfolio",
