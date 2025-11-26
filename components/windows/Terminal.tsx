@@ -1,5 +1,6 @@
-import React from "react";
+"use client";
 import { techStack } from "@/lib/constants";
+import { withAppWindow } from "../hoc/withAppWindow";
 
 const Terminal = () => {
   return (
@@ -58,4 +59,5 @@ const Terminal = () => {
     </section>
   );
 };
-export default Terminal;
+const TerminalWindow = withAppWindow(Terminal);
+export default TerminalWindow;
