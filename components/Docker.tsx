@@ -91,7 +91,6 @@ const Docker = () => {
 
   const openAppWindow = (appId: WindowId) => {
     openWindow(appId, null);
-    console.log(windows);
   };
 
   return (
