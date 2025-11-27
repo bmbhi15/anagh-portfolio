@@ -5,6 +5,7 @@ import { Draggable } from "gsap/Draggable";
 import { WindowId } from "@/lib/constants";
 import { useWindowStore } from "@/lib/zustand/store";
 import clsx from "clsx";
+import WindowControls from "../ui/WindowControls";
 
 gsap.registerPlugin(Draggable);
 
@@ -33,10 +34,7 @@ export function withAppWindow<P extends object>(
         id={`window-${windowId}`}
       >
         <div id="window-header">
-          <div id="window-controls">
-            <div className="close" onClick={handleWindowClose} />
-            <div className="minimize" /> <div className="maximize" />{" "}
-          </div>
+          <WindowControls windowId={windowId} />
           <p>{windowId}</p>
         </div>
         <WrappedComponent {...props} />

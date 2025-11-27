@@ -1,7 +1,13 @@
-import React from "react";
-
+"use client";
+import { techStack } from "@/lib/constants";
+import { withAppWindow } from "../hoc/withAppWindow";
+import { WindowId } from "@/lib/constants";
 const Safari = () => {
-  return <div>Safari</div>;
+  return (
+    <section id={WindowId.Safari}>
+      <div></div>
+    </section>
+  );
 };
-
-export default Safari;
+const SafariWindow = withAppWindow(Safari, WindowId.Safari);
+export default SafariWindow;
