@@ -3,6 +3,7 @@ import NavBar from "@/components/NavBar";
 import WelcomeText from "@/components/WelcomeText";
 import Docker from "@/components/Docker";
 import Terminal from "@/components/windows/Terminal";
+import SafariWindow from "@/components/windows/Safari";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <WelcomeText />
       <Docker />
       <Terminal />
+      <SafariWindow />
     </main>
   );
 }

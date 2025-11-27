@@ -13,17 +13,13 @@ export function withAppWindow<P extends object>(
   windowId: WindowId
 ): React.FC<P> {
   const ComponentWithWindow: React.FC<P> = (props) => {
-    const { windows, nextZIndex, openWindow, closeWindow, focusWindow } =
-      useWindowStore();
+    const { windows, nextZIndex, focusWindow } = useWindowStore();
     const windowConfig = windows[windowId];
 
     useGSAP(() => {
       Draggable.create(`#window-${windowId}`);
     }, []);
 
-    const handleWindowClose = () => {
-      closeWindow(windowId);
-    };
     return (
       <div
         className={clsx("absolute h-150 w-200", {
@@ -32,13 +28,6 @@ export function withAppWindow<P extends object>(
         })}
         id={`window-${windowId}`}
       >
-        <div id="window-header">
-          <div id="window-controls">
-            <div className="close" onClick={handleWindowClose} />
-            <div className="minimize" /> <div className="maximize" />{" "}
-          </div>
-          <p>{windowId}</p>
-        </div>
         <WrappedComponent {...props} />
       </div>
     );
