@@ -41,11 +41,7 @@ const Contact = () => {
                 style={{ backgroundColor: color }}
                 className="relative z-10 flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center shadow-md group-hover:bg-white/20 group-hover:backdrop-blur-sm transition-colors duration-300"
               >
-                <img
-                  src={icon}
-                  alt={text}
-                  className="w-6 h-6 invert brightness-0 text-white"
-                />
+                <img src={icon} alt={text} className="w-6 h-6" />
               </div>
 
               {/* Text Content */}
