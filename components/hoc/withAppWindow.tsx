@@ -5,7 +5,6 @@ import { Draggable } from "gsap/Draggable";
 import { WindowId } from "@/lib/constants";
 import { useWindowStore } from "@/lib/zustand/store";
 import clsx from "clsx";
-import WindowControls from "../ui/WindowControls";
 
 gsap.registerPlugin(Draggable);
 
@@ -14,17 +13,13 @@ export function withAppWindow<P extends object>(
   windowId: WindowId
 ): React.FC<P> {
   const ComponentWithWindow: React.FC<P> = (props) => {
-    const { windows, nextZIndex, openWindow, closeWindow, focusWindow } =
-      useWindowStore();
+    const { windows, nextZIndex, focusWindow } = useWindowStore();
     const windowConfig = windows[windowId];
 
     useGSAP(() => {
       Draggable.create(`#window-${windowId}`);
     }, []);
 
-    const handleWindowClose = () => {
-      closeWindow(windowId);
-    };
     return (
       <div
         className={clsx("absolute h-150 w-200", {
@@ -33,10 +28,6 @@ export function withAppWindow<P extends object>(
         })}
         id={`window-${windowId}`}
       >
-        <div id="window-header">
-          <WindowControls windowId={windowId} />
-          <p>{windowId}</p>
-        </div>
         <WrappedComponent {...props} />
       </div>
     );
