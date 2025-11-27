@@ -82,7 +82,7 @@ body {
     @apply absolute bottom-5 left-1/2 -translate-x-1/2 z-50 select-none max-sm:hidden;
 
     .dock-container {
-      @apply bg-white/20 backdrop-blur-md justify-between rounded-2xl p-1.5 flex items-end gap-1.5;
+      @apply bg-white/20 backdrop-blur-md justify-between rounded-2xl p-2 flex items-end gap-1.5;
     }
 
     .tooltip {
@@ -90,7 +90,7 @@ body {
     }
 
     .dock-icon {
-      @apply size-14 3xl:size-20 cursor-pointer;
+      @apply size-14 3xl:size-20 cursor-pointer relative;
 
       img {
         @apply object-cover object-center;
@@ -162,7 +162,7 @@ body {
     }
   }
 
-  #terminal {
+  /* #terminal {
     @apply w-xl absolute top-32 left-1/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
     h2 {
@@ -206,8 +206,124 @@ body {
         }
       }
     }
-  }
+  } */
 
+  #terminal {
+    @apply w-full h-full bg-zinc-950 text-zinc-100
+      border border-zinc-800/80 rounded-b-2xl
+      shadow-[0_18px_60px_rgba(0,0,0,0.75)]
+      overflow-hidden flex flex-col
+      font-mono text-xs sm:text-sm;
+
+    header {
+      &.terminal-header {
+        @apply px-4 pt-3 pb-2
+          border-b border-zinc-800/70
+          bg-gradient-to-r from-zinc-950 via-zinc-900/80 to-zinc-950
+          flex items-center justify-between;
+
+        .identity {
+          @apply flex items-center gap-2;
+
+          p:first-child {
+            @apply text-emerald-400 text-[0.7rem];
+          }
+
+          p:last-child {
+            @apply text-zinc-500 text-[0.65rem];
+          }
+        }
+
+        > p {
+          @apply text-zinc-500 text-[0.65rem];
+        }
+      }
+    }
+
+    .terminal-body {
+      @apply flex-1 overflow-auto
+        px-4 py-3
+        bg-gradient-to-b from-zinc-950 via-zinc-950/95 to-zinc-900
+        space-y-3;
+
+      .intro {
+        p:first-child {
+          @apply text-emerald-400 text-[0.7rem] sm:text-xs;
+        }
+
+        p:last-child {
+          @apply text-zinc-400 text-[0.7rem];
+        }
+      }
+
+      .techstack {
+        @apply mt-2;
+
+        .content {
+          @apply space-y-3 mt-2;
+
+          > li {
+            @apply border-l border-zinc-800/80 pl-3 space-y-1;
+
+            .heading {
+              @apply flex items-center gap-2;
+
+              h3 {
+                @apply text-emerald-300 text-[0.7rem] sm:text-xs font-semibold;
+              }
+
+              .divider {
+                @apply h-px w-12 bg-zinc-700/70;
+              }
+            }
+
+            .items {
+              @apply flex flex-wrap gap-1.5;
+
+              li span {
+                @apply px-2 py-0.5
+                  rounded-full border border-zinc-700/80
+                  bg-zinc-900/70
+                  text-[0.7rem] sm:text-xs text-zinc-100
+                  shadow-[0_0_0_1px_rgba(15,23,42,0.6)];
+              }
+            }
+          }
+        }
+      }
+
+      .prompt {
+        @apply mt-4 pt-3 border-t border-zinc-800/70
+          text-[0.7rem] text-zinc-500;
+
+        p {
+          @apply flex items-center gap-1;
+
+          .symbol {
+            @apply text-emerald-400;
+          }
+
+          .cursor {
+            @apply inline-block w-2 h-3 bg-emerald-400/80 animate-pulse;
+          }
+        }
+      }
+    }
+
+    footer {
+      &.terminal-footer {
+        @apply px-4 py-2
+          border-t border-zinc-800/80
+          bg-zinc-950/95
+          flex items-center justify-between
+          text-[0.65rem] text-zinc-500;
+
+        p {
+          @apply flex items-center gap-2;
+        }
+      }
+    }
+  }
   #contact {
     @apply max-w-2xl absolute top-60 left-5/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 

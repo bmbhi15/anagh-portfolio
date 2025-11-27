@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { dockApps, WindowId } from "@/lib/constants";
 import { Tooltip } from "react-tooltip";
 import { useWindowStore } from "@/lib/zustand/store";
-
+import clsx from "clsx";
 const HEIGHT = {
   min_h: 0,
   max_h: -50,
@@ -109,7 +109,24 @@ const Docker = () => {
                   }
                 }}
               >
-                <img src={`/images/${app.icon}`} alt={app.name} />
+                <img
+                  src={`/images/${app.icon}`}
+                  alt={app.name}
+                  className="cursor-pointer"
+                />
+                {app.canOpen ? (
+                  <div
+                    className={clsx(
+                      "size-1.5 rounded-full bg-amber-50 absolute  left-1/2 -translate-x-1/2 ",
+                      {
+                        block: windows[app.id as WindowId].isOpen,
+                        hidden: !windows[app.id as WindowId].isOpen,
+                      }
+                    )}
+                  />
+                ) : (
+                  <></>
+                )}
               </button>
             </li>
           ))}
