@@ -18,7 +18,7 @@ export function withAppWindow<P extends object>(
     const windowConfig = windows[windowId];
 
     useGSAP(() => {
-      Draggable.create(`#${windowId}`);
+      Draggable.create(`#window-${windowId}`);
     }, []);
 
     const handleWindowClose = () => {
@@ -30,7 +30,7 @@ export function withAppWindow<P extends object>(
           block: windowConfig.isOpen,
           hidden: !windowConfig.isOpen,
         })}
-        id="window"
+        id={`window-${windowId}`}
       >
         <div id="window-header">
           <div id="window-controls">
