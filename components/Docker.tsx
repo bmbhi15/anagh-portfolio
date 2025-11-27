@@ -94,7 +94,7 @@ const Docker = () => {
   };
 
   return (
-    <section id="dock">
+    <section id="dock" className="z-[2000]">
       <div className="dock-container">
         <ul ref={containerRef} className="flex flex-row space-x-5">
           {dockApps.map((app) => (
