@@ -1,10 +1,10 @@
 "use client";
 import { techStack } from "@/lib/constants";
 import { withAppWindow } from "../hoc/withAppWindow";
-
+import { WindowId } from "@/lib/constants";
 const Terminal = () => {
   return (
-    <section id="terminal">
+    <section id={WindowId.Terminal}>
       <header className="terminal-header">
         <div className="identity">
           <p>anagh@macbook-pro</p>
@@ -59,5 +59,5 @@ const Terminal = () => {
     </section>
   );
 };
-const TerminalWindow = withAppWindow(Terminal);
+const TerminalWindow = withAppWindow(Terminal, WindowId.Terminal);
 export default TerminalWindow;

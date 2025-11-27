@@ -14,7 +14,7 @@ type State = {
 
 type Actions = {
   openWindow: (windowKey: WindowId, date: unknown) => void;
-  closeWindow: (windowKey: WindowId, date: unknown) => void;
+  closeWindow: (windowKey: WindowId) => void;
   focusWindow: (windowKey: WindowId) => void;
 };
 
@@ -29,12 +29,11 @@ export const useWindowStore = create<State & Actions>()(
         win.zIndex = state.nextZIndex++;
         win.data = data;
       }),
-    closeWindow: (windowKey: WindowId, data = null) =>
+    closeWindow: (windowKey: WindowId) =>
       set((state) => {
         const win = state.windows[windowKey];
         win.isOpen = false;
         win.zIndex = INITIAL_Z_INDEX;
-        win.data = data;
       }),
     focusWindow: (windowKey: WindowId) =>
       set((state) => {
