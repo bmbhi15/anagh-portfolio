@@ -1,8 +1,11 @@
+"use client";
 import { navLinks, navIcons } from "@/lib/constants";
 import dayjs from "dayjs";
 import Image from "next/image";
+import { useWindowStore } from "@/lib/zustand/store";
 
 const NavBar = () => {
+  const { openWindow } = useWindowStore();
   return (
     <nav className="bg-white-10 backdrop-blur-[1px]  shadow-2xs">
       <div>
@@ -10,7 +13,12 @@ const NavBar = () => {
         <p className="text-sm mr-10">Anagh Pranshu</p>
         <ul>
           {navLinks.map((link) => (
-            <li key={link.id}>
+            <li
+              key={link.id}
+              onClick={() => {
+                openWindow(link.type, null);
+              }}
+            >
               <p>{link.name}</p>
             </li>
           ))}
