@@ -13,11 +13,13 @@ export function withAppWindow<P extends object>(
   windowId: WindowId
 ): React.FC<P> {
   const ComponentWithWindow: React.FC<P> = (props) => {
-    const { windows, nextZIndex, focusWindow } = useWindowStore();
+    const { windows, focusWindow } = useWindowStore();
     const windowConfig = windows[windowId];
 
     useGSAP(() => {
-      Draggable.create(`#window-${windowId}`);
+      Draggable.create(`#window-${windowId}`, {
+        zIndexBoost: false,
+      });
     }, []);
 
     return (
@@ -26,7 +28,11 @@ export function withAppWindow<P extends object>(
           block: windowConfig?.isOpen,
           hidden: !windowConfig?.isOpen,
         })}
+        style={{ zIndex: windowConfig.zIndex }}
         id={`window-${windowId}`}
+        onFocus={() => {
+          focusWindow(windowId);
+        }}
       >
         <WrappedComponent {...props} />
       </div>

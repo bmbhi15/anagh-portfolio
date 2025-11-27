@@ -8,7 +8,7 @@ const Terminal = () => {
     <>
       <div id="window-header">
         <WindowControls windowId={WindowId.Terminal} />
-        <p>{WindowId.Terminal}</p>
+        <p className="col-center">Terminal</p>
       </div>
       <section id={WindowId.Terminal}>
         <header className="terminal-header">

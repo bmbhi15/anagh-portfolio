@@ -26,7 +26,8 @@ export const useWindowStore = create<State & Actions>()(
       set((state) => {
         const win = state.windows[windowKey];
         win.isOpen = true;
-        win.zIndex = state.nextZIndex++;
+        win.zIndex = state.nextZIndex;
+        state.nextZIndex++;
         win.data = data;
       }),
     closeWindow: (windowKey: WindowId) =>
@@ -39,7 +40,8 @@ export const useWindowStore = create<State & Actions>()(
       set((state) => {
         const win = state.windows[windowKey];
         win.isOpen = true;
-        win.zIndex = state.nextZIndex++;
+        win.zIndex = state.nextZIndex;
+        state.nextZIndex++;
       }),
   }))
 );
