@@ -101,7 +101,30 @@ const dockApps: DockApp[] = [
   },
 ];
 
-const blogPosts = [];
+const blogPosts = [
+  {
+    id: 1,
+    date: "Sep 2, 2025",
+    title:
+      "TypeScript Explained: What It Is, Why It Matters, and How to Master It",
+    image: "/images/blog1.png",
+    link: "",
+  },
+  {
+    id: 2,
+    date: "Aug 28, 2025",
+    title: "The Ultimate Guide to Mastering Three.js for 3D Development",
+    image: "/images/blog2.png",
+    link: "",
+  },
+  {
+    id: 3,
+    date: "Aug 15, 2025",
+    title: "The Ultimate Guide to Mastering GSAP Animations",
+    image: "/images/blog3.png",
+    link: "",
+  },
+];
 
 const techStack = [
   {
