@@ -9,7 +9,7 @@ import ContactWindow from "@/components/windows/Contact";
 
 export default function Home() {
   return (
-    <main>
+    <main id="main-container">
       <NavBar />
       <WelcomeText />
       <Docker />

@@ -19,6 +19,7 @@ export function withAppWindow<P extends object>(
     useGSAP(() => {
       Draggable.create(`#window-${windowId}`, {
         zIndexBoost: false,
+        bounds: document.getElementById("main-container"),
       });
     }, []);
 
