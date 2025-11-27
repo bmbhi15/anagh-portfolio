@@ -8,21 +8,26 @@ export enum WindowId {
   TxtFile = "txtfile",
   ImgFile = "imgfile",
 }
-const navLinks = [
+export interface NavLink {
+  id: number; // <-- typed against your WindowId enum
+  name: string;
+  type: WindowId;
+}
+const navLinks: NavLink[] = [
   {
     id: 1,
     name: "Projects",
-    type: "finder",
+    type: WindowId.Finder,
   },
   {
     id: 3,
     name: "Contact",
-    type: "contact",
+    type: WindowId.Contact,
   },
   {
     id: 4,
     name: "Resume",
-    type: "resume",
+    type: WindowId.Resume,
   },
 ];
 

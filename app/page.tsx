@@ -4,6 +4,7 @@ import WelcomeText from "@/components/WelcomeText";
 import Docker from "@/components/Docker";
 import Terminal from "@/components/windows/Terminal";
 import SafariWindow from "@/components/windows/Safari";
+import ResumeWindow from "@/components/windows/Resume";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Docker />
       <Terminal />
       <SafariWindow />
+      <ResumeWindow />
     </main>
   );
 }
