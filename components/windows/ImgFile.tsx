@@ -25,7 +25,7 @@ const ImgFile = () => {
       </div>
 
       <section className="preview">
-        <img src={url} alt="photo" />
+        <img src={url as string} alt="photo" />
       </section>
     </div>
   );

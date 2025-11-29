@@ -18,7 +18,7 @@ export default function Home() {
       <Docker />
       <Terminal />
       <SafariWindow />
-      <ResumeWindow />
+      {/* <ResumeWindow /> */}
       <ContactWindow />
       <FinderWindow />
       <TxtFileWindow />
