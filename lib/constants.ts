@@ -247,7 +247,24 @@ export {
   gallery,
 };
 
-const WORK_LOCATION = {
+export interface Location {
+  id: number;
+  type?: string;
+  name: string;
+  icon: string;
+  kind: string;
+  fileType?: string;
+  position?: string;
+  windowPosition?: string;
+  description?: string[];
+  href?: string;
+  imageUrl?: string;
+  subtitle?: string;
+  image?: string;
+  children?: Location[];
+}
+
+export const WORK_LOCATION: Location = {
   id: 1,
   type: "work",
   name: "Work",
@@ -295,15 +312,6 @@ const WORK_LOCATION = {
           position: "top-52 right-80",
           imageUrl: "/images/project-1.png",
         },
-        {
-          id: 5,
-          name: "Design.fig",
-          icon: "/images/plain.png",
-          kind: "file",
-          fileType: "fig",
-          href: "https://google.com",
-          position: "top-60 right-20",
-        },
       ],
     },
 
@@ -346,16 +354,7 @@ const WORK_LOCATION = {
           kind: "file",
           fileType: "img",
           position: "top-52 left-80",
-          imageUrl: "/images/project-2.png",
-        },
-        {
-          id: 5,
-          name: "Design.fig",
-          icon: "/images/plain.png",
-          kind: "file",
-          fileType: "fig",
-          href: "https://google.com",
-          position: "top-60 left-5",
+          imageUrl: "/images/wallpaper.jpg",
         },
       ],
     },
@@ -401,21 +400,12 @@ const WORK_LOCATION = {
           position: "top-52 right-80",
           imageUrl: "/images/project-3.png",
         },
-        {
-          id: 5,
-          name: "Design.fig",
-          icon: "/images/plain.png",
-          kind: "file",
-          fileType: "fig",
-          href: "https://google.com",
-          position: "top-60 right-20",
-        },
       ],
     },
   ],
 };
 
-const ABOUT_LOCATION = {
+const ABOUT_LOCATION: Location = {
   id: 2,
   type: "about",
   name: "About me",
@@ -468,7 +458,7 @@ const ABOUT_LOCATION = {
   ],
 };
 
-const RESUME_LOCATION = {
+const RESUME_LOCATION: Location = {
   id: 3,
   type: "resume",
   name: "Resume",
@@ -487,7 +477,7 @@ const RESUME_LOCATION = {
   ],
 };
 
-const TRASH_LOCATION = {
+const TRASH_LOCATION: Location = {
   id: 4,
   type: "trash",
   name: "Trash",
@@ -515,12 +505,12 @@ const TRASH_LOCATION = {
   ],
 };
 
-export const locations = {
-  work: WORK_LOCATION,
-  about: ABOUT_LOCATION,
-  resume: RESUME_LOCATION,
-  trash: TRASH_LOCATION,
-};
+export const ROOT_LOCATION: Location[] = [
+  WORK_LOCATION,
+  ABOUT_LOCATION,
+  RESUME_LOCATION,
+  TRASH_LOCATION,
+];
 
 const INITIAL_Z_INDEX = 1000;
 

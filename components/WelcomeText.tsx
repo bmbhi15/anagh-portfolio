@@ -14,7 +14,7 @@ const SMALL_WEIGHT = {
   max_w: 700,
 };
 const LARGE_WEIGHT = {
-  min_w: 200,
+  min_w: 300,
   max_w: 800,
 };
 const SCALE = {
@@ -27,11 +27,14 @@ const renderText = (text: string, type: string) => {
 
   const splitTextRender = splitText.map((char, id) => (
     <span
-      className={clsx({
-        "text-4xl": type === "title",
-        "text-[170px]": type === "subtitle",
-        // "font-grandstander": type === "subtitle",
-      })}
+      className={clsx(
+        {
+          "text-4xl": type === "title",
+          "text-[170px]": type === "subtitle",
+          "font-light": type === "subtitle",
+        },
+        "text-[#323aa8]"
+      )}
       key={`${id}`}
       id={`${type}_${id}`}
     >

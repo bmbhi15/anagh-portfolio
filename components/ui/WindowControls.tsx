@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useWindowStore } from "@/lib/zustand/store";
+import { useWindowStore } from "@/lib/zustand/windowStore";
 import { WindowId } from "@/lib/constants";
 const WindowControls = ({ windowId }: { windowId: WindowId }) => {
   const { closeWindow } = useWindowStore();

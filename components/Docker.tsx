@@ -4,7 +4,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { dockApps, WindowId } from "@/lib/constants";
 import { Tooltip } from "react-tooltip";
-import { useWindowStore } from "@/lib/zustand/store";
+import { useWindowStore } from "@/lib/zustand/windowStore";
 import clsx from "clsx";
 const HEIGHT = {
   min_h: 0,
