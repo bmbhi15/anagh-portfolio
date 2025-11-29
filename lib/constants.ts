@@ -247,7 +247,24 @@ export {
   gallery,
 };
 
-const WORK_LOCATION = {
+export interface Location {
+  id: number;
+  type?: string;
+  name: string;
+  icon: string;
+  kind: string;
+  fileType?: string;
+  position?: string;
+  windowPosition?: string;
+  description?: string[];
+  href?: string;
+  imageUrl?: string;
+  subtitle?: string;
+  image?: string;
+  children?: Location[];
+}
+
+const WORK_LOCATION: Location = {
   id: 1,
   type: "work",
   name: "Work",
@@ -415,7 +432,7 @@ const WORK_LOCATION = {
   ],
 };
 
-const ABOUT_LOCATION = {
+const ABOUT_LOCATION: Location = {
   id: 2,
   type: "about",
   name: "About me",
@@ -468,7 +485,7 @@ const ABOUT_LOCATION = {
   ],
 };
 
-const RESUME_LOCATION = {
+const RESUME_LOCATION: Location = {
   id: 3,
   type: "resume",
   name: "Resume",
@@ -487,7 +504,7 @@ const RESUME_LOCATION = {
   ],
 };
 
-const TRASH_LOCATION = {
+const TRASH_LOCATION: Location = {
   id: 4,
   type: "trash",
   name: "Trash",
