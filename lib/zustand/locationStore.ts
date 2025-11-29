@@ -1,8 +1,8 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
-import { Location, locations } from "../constants";
+import { Location, ROOT_LOCATION } from "../constants";
 
-const DEFAULT_LOCATION = locations.about;
+const DEFAULT_LOCATION = ROOT_LOCATION[1];
 
 type State = {
   currentLocation: Location;

@@ -264,7 +264,7 @@ export interface Location {
   children?: Location[];
 }
 
-const WORK_LOCATION: Location = {
+export const WORK_LOCATION: Location = {
   id: 1,
   type: "work",
   name: "Work",
@@ -312,15 +312,6 @@ const WORK_LOCATION: Location = {
           position: "top-52 right-80",
           imageUrl: "/images/project-1.png",
         },
-        {
-          id: 5,
-          name: "Design.fig",
-          icon: "/images/plain.png",
-          kind: "file",
-          fileType: "fig",
-          href: "https://google.com",
-          position: "top-60 right-20",
-        },
       ],
     },
 
@@ -363,16 +354,7 @@ const WORK_LOCATION: Location = {
           kind: "file",
           fileType: "img",
           position: "top-52 left-80",
-          imageUrl: "/images/project-2.png",
-        },
-        {
-          id: 5,
-          name: "Design.fig",
-          icon: "/images/plain.png",
-          kind: "file",
-          fileType: "fig",
-          href: "https://google.com",
-          position: "top-60 left-5",
+          imageUrl: "/images/wallpaper.png",
         },
       ],
     },
@@ -417,15 +399,6 @@ const WORK_LOCATION: Location = {
           fileType: "img",
           position: "top-52 right-80",
           imageUrl: "/images/project-3.png",
-        },
-        {
-          id: 5,
-          name: "Design.fig",
-          icon: "/images/plain.png",
-          kind: "file",
-          fileType: "fig",
-          href: "https://google.com",
-          position: "top-60 right-20",
         },
       ],
     },
@@ -532,12 +505,12 @@ const TRASH_LOCATION: Location = {
   ],
 };
 
-export const locations = {
-  work: WORK_LOCATION,
-  about: ABOUT_LOCATION,
-  resume: RESUME_LOCATION,
-  trash: TRASH_LOCATION,
-};
+export const ROOT_LOCATION: Location[] = [
+  WORK_LOCATION,
+  ABOUT_LOCATION,
+  RESUME_LOCATION,
+  TRASH_LOCATION,
+];
 
 const INITIAL_Z_INDEX = 1000;
 

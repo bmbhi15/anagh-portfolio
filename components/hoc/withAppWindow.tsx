@@ -15,7 +15,7 @@ export function withAppWindow<P extends object>(
   const ComponentWithWindow: React.FC<P> = (props) => {
     const { windows, focusWindow } = useWindowStore();
     const windowConfig = windows[windowId];
-
+    console.log(windowConfig);
     useGSAP(() => {
       Draggable.create(`#window-${windowId}`, {
         // zIndexBoost: false,
