@@ -18,8 +18,9 @@ export function withAppWindow<P extends object>(
 
     useGSAP(() => {
       Draggable.create(`#window-${windowId}`, {
-        zIndexBoost: false,
+        // zIndexBoost: false,
         bounds: document.getElementById("main-container"),
+        onPress: () => focusWindow(windowId),
       });
     }, []);
 
@@ -31,9 +32,6 @@ export function withAppWindow<P extends object>(
         })}
         style={{ zIndex: windowConfig.zIndex }}
         id={`window-${windowId}`}
-        onFocus={() => {
-          focusWindow(windowId);
-        }}
       >
         <WrappedComponent {...props} />
       </div>
