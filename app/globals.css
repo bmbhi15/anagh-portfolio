@@ -212,7 +212,7 @@ body {
   } */
 
   #terminal {
-    @apply w-full h-full bg-zinc-950 text-zinc-100
+    @apply w-2xl h-full bg-zinc-950 text-zinc-100
       border border-zinc-800/80 rounded-b-2xl
       shadow-[0_18px_60px_rgba(0,0,0,0.75)]
       overflow-hidden flex flex-col
@@ -263,7 +263,7 @@ body {
         @apply mt-2;
 
         .content {
-          @apply space-y-3 mt-2;
+          @apply space-y-7 mt-5;
 
           > li {
             @apply border-l border-zinc-800/80 pl-3 space-y-1;
@@ -281,7 +281,7 @@ body {
             }
 
             .items {
-              @apply flex flex-wrap gap-1.5;
+              @apply flex flex-wrap gap-4 mt-2;
 
               li span {
                 @apply px-2 py-0.5

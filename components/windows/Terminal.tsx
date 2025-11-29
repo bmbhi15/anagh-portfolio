@@ -5,12 +5,12 @@ import { WindowId } from "@/lib/constants";
 import WindowControls from "../ui/WindowControls";
 const Terminal = () => {
   return (
-    <>
+    <div id="terminal">
       <div id="window-header">
         <WindowControls windowId={WindowId.Terminal} />
         <p className="col-center">Terminal</p>
       </div>
-      <section id={WindowId.Terminal}>
+      <section>
         <header className="terminal-header">
           <div className="identity">
             <p>anagh@macbook-pro</p>
@@ -63,7 +63,7 @@ const Terminal = () => {
           <p>Stack: React · TypeScript · Tailwind · Node · Django</p>
         </footer>
       </section>
-    </>
+    </div>
   );
 };
 const TerminalWindow = withAppWindow(Terminal, WindowId.Terminal);
