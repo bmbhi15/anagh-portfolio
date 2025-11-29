@@ -5,12 +5,12 @@ import { WindowId } from "@/lib/constants";
 import WindowControls from "../ui/WindowControls";
 const Contact = () => {
   return (
-    <>
+    <div id={WindowId.Contact}>
       <div id="window-header">
         <WindowControls windowId={WindowId.Contact} />
         <p>{WindowId.Contact}</p>
       </div>
-      <section id={WindowId.Contact}>
+      <section className="h-full">
         <div className="text-center mb-8 space-y-2 mt-10 ">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-white shadow-lg rounded-full mb-2 text-3xl animate-bounce-slow">
             👋
@@ -23,7 +23,7 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl mx-10">
+        <div className="grid grid-cols-2 sm:grid-cols-2 gap-10  mx-10 ">
           {socials.map(({ id, text, icon, color, link }) => (
             <a
               key={id}
@@ -31,7 +31,7 @@ const Contact = () => {
               target="_blank"
               rel="noopener noreferrer"
               style={{ "--hover-color": color }}
-              className="group relative flex items-center p-4 bg-white rounded-2xl shadow-sm border border-gray-100 hover:border-transparent hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300 overflow-hidden"
+              className="  flex items-center p-4 bg-white rounded-2xl shadow-sm border border-gray-100 hover:border-transparent hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300 overflow-hidden"
             >
               {/* Hover Background Fill */}
               <div className="absolute inset-0 bg-[var(--hover-color)] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
@@ -74,7 +74,7 @@ const Contact = () => {
           ))}
         </div>
       </section>
-    </>
+    </div>
   );
 };
 const ContactWindow = withAppWindow(Contact, WindowId.Contact);

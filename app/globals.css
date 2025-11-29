@@ -328,7 +328,7 @@ body {
     }
   }
   #contact {
-    @apply bg-white shadow-2xl drop-shadow-2xl rounded-b-xl overflow-hidden h-full;
+    @apply w-4xl h-[500px] bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
     h2 {
       @apply font-bold text-sm text-center w-full;
