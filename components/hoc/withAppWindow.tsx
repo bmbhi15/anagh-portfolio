@@ -3,7 +3,7 @@ import gsap from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import { Draggable } from "gsap/Draggable";
 import { WindowId } from "@/lib/constants";
-import { useWindowStore } from "@/lib/zustand/store";
+import { useWindowStore } from "@/lib/zustand/windowStore";
 import clsx from "clsx";
 
 gsap.registerPlugin(Draggable);

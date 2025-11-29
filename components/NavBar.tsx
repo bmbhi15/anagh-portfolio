@@ -2,7 +2,7 @@
 import { navLinks, navIcons } from "@/lib/constants";
 import dayjs from "dayjs";
 import Image from "next/image";
-import { useWindowStore } from "@/lib/zustand/store";
+import { useWindowStore } from "@/lib/zustand/windowStore";
 
 const NavBar = () => {
   const { openWindow } = useWindowStore();
