@@ -30,7 +30,6 @@ const Contact = () => {
               href={link}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ "--hover-color": color }}
               className="  flex items-center p-4 bg-white rounded-2xl shadow-sm border border-gray-100 hover:border-transparent hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300 overflow-hidden"
             >
               {/* Hover Background Fill */}
