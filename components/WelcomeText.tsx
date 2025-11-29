@@ -5,13 +5,21 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import clsx from "clsx";
 
+const HEIGHT = {
+  min_h: 0,
+  max_h: -50,
+};
 const SMALL_WEIGHT = {
   min_w: 300,
   max_w: 700,
 };
 const LARGE_WEIGHT = {
-  min_w: 300,
-  max_w: 700,
+  min_w: 200,
+  max_w: 800,
+};
+const SCALE = {
+  min_s: 1,
+  max_s: 2,
 };
 
 const renderText = (text: string, type: string) => {
@@ -21,7 +29,8 @@ const renderText = (text: string, type: string) => {
     <span
       className={clsx({
         "text-4xl": type === "title",
-        "text-9xl": type === "subtitle",
+        "text-[170px]": type === "subtitle",
+        // "font-grandstander": type === "subtitle",
       })}
       key={`${id}`}
       id={`${type}_${id}`}
@@ -40,7 +49,7 @@ const calculateIntensity = (
   const mouseX = e.clientX - leftContainer;
   const elemX = left - leftContainer + width / 2;
   const distance = mouseX - elemX;
-  const intensity = Math.exp(-(distance ** 2) / 10000);
+  const intensity = Math.exp(-(distance ** 2) / 20000);
 
   return intensity;
 };
@@ -57,12 +66,17 @@ const addEventListenerToDiv = (
 
     if (!characterElements) return;
     characterElements.forEach((elem, key) => {
-      const { max_w, min_w } = type === "title" ? LARGE_WEIGHT : SMALL_WEIGHT;
+      const { max_h, min_h } = HEIGHT;
+      const { max_w, min_w } =
+        type === "subtitle" ? LARGE_WEIGHT : SMALL_WEIGHT;
+      const { max_s, min_s } = SCALE;
       const intensity = calculateIntensity(e, left, elem);
       const idSelector = `#${type}_${key}`;
       gsap.to(idSelector, {
+        y: min_h + (max_h - min_h) * intensity,
         fontWeight: min_w + intensity * (max_w - min_w),
-        duration: 0.5,
+        scale: 2,
+        duration: 1,
       });
     });
   };
@@ -72,11 +86,11 @@ const addEventListenerToDiv = (
 
     if (!characterElements) return;
     characterElements.forEach((elem, key) => {
-      const { min_w } = type === "title" ? LARGE_WEIGHT : SMALL_WEIGHT;
+      const { min_w } = type === "subtitle" ? LARGE_WEIGHT : SMALL_WEIGHT;
       const idSelector = `#${type}_${key}`;
       gsap.to(idSelector, {
         fontWeight: min_w,
-        duration: 0.5,
+        duration: 1.5,
       });
     });
   };
@@ -108,7 +122,7 @@ const WelcomeText = () => {
     };
   }, []);
   return (
-    <section id="welcome" className="">
+    <section id="welcome">
       <div ref={titleRef} id="title">
         {renderText("Hey, welcome to my", "title")}
       </div>
