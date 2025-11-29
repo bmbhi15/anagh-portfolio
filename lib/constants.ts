@@ -354,7 +354,7 @@ export const WORK_LOCATION: Location = {
           kind: "file",
           fileType: "img",
           position: "top-52 left-80",
-          imageUrl: "/images/wallpaper.png",
+          imageUrl: "/images/wallpaper.jpg",
         },
       ],
     },
