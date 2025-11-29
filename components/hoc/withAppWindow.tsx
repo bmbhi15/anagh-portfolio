@@ -26,7 +26,7 @@ export function withAppWindow<P extends object>(
 
     return (
       <div
-        className={clsx("absolute h-150 w-200", {
+        className={clsx("absolute ", {
           block: windowConfig?.isOpen,
           hidden: !windowConfig?.isOpen,
         })}
