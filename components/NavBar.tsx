@@ -7,9 +7,13 @@ import { useWindowStore } from "@/lib/zustand/windowStore";
 const NavBar = () => {
   const { openWindow } = useWindowStore();
   return (
-    <nav className="bg-white-10 backdrop-blur-[1px]  shadow-2xs">
+    <nav>
       <div>
-        <img src="/images/logo.svg" alt="Apple Logo" />
+        <img
+          src="/images/logo.svg"
+          alt="Apple Logo"
+          className="text-gray-400"
+        />
         <p className="text-sm mr-10">Anagh Pranshu</p>
         <ul>
           {navLinks.map((link) => (
@@ -32,7 +36,9 @@ const NavBar = () => {
             </li>
           ))}
         </ul>
-        <time>{dayjs().format("ddd DD MMM hh:mm A ")}</time>
+        <time className="text-gray-400 font-bold">
+          {dayjs().format("ddd DD MMM hh:mm A ")}
+        </time>
       </div>
     </nav>
   );
