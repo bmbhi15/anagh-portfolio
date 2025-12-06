@@ -1,15 +1,17 @@
 "use client";
-import { pdfjs } from "react-pdf";
 import { useState } from "react";
 import { Document, Page } from "react-pdf";
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 import { FileText, Download } from "lucide-react";
 import { withAppWindow } from "../hoc/withAppWindow";
 import { WindowId } from "@/lib/constants";
 import WindowControls from "../ui/WindowControls";
+import { usePDFJS } from "@/lib/hooks/usePDFjs";
 
 const Resume = () => {
   const [numPages, setNumPages] = useState<number>();
+  usePDFJS(async (pdfjs) => {
+    console.log(pdfjs);
+  });
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
   }

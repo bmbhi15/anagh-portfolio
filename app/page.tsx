@@ -12,17 +12,28 @@ import ImgFileWindow from "@/components/windows/ImgFile";
 
 export default function Home() {
   return (
-    <main id="main-container">
-      <NavBar />
-      <WelcomeText />
-      <Docker />
-      <Terminal />
-      <SafariWindow />
-      {/* <ResumeWindow /> */}
-      <ContactWindow />
-      <FinderWindow />
-      <TxtFileWindow />
-      <ImgFileWindow />
-    </main>
+    <>
+      <main id="main-container">
+        <NavBar />
+        <WelcomeText />
+        <Docker />
+        <Terminal />
+        <SafariWindow />
+        {/* <ResumeWindow /> */}
+        <ContactWindow />
+        <FinderWindow />
+        <TxtFileWindow />
+        <ImgFileWindow />
+      </main>
+      <video
+        id="background-video"
+        playsInline
+        muted
+        preload="auto"
+        autoPlay
+        loop
+        src="/videos/the-shadow-monarch-hd.mp4"
+      />
+    </>
   );
 }
