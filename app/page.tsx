@@ -1,3 +1,5 @@
+"use client";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import NavBar from "@/components/NavBar";
 import WelcomeText from "@/components/WelcomeText";
@@ -10,7 +12,7 @@ import FinderWindow from "@/components/windows/Finder";
 import TxtFileWindow from "@/components/windows/TxtFile";
 import ImgFileWindow from "@/components/windows/ImgFile";
 
-export default function Home() {
+function Home() {
   return (
     <>
       <main id="main-container">
@@ -19,7 +21,7 @@ export default function Home() {
         <Docker />
         <Terminal />
         <SafariWindow />
-        {/* <ResumeWindow /> */}
+        <ResumeWindow />
         <ContactWindow />
         <FinderWindow />
         <TxtFileWindow />
@@ -37,3 +39,5 @@ export default function Home() {
     </>
   );
 }
+
+export default Home;

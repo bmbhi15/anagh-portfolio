@@ -1,24 +1,17 @@
 "use client";
-import { useState } from "react";
-import { Document, Page } from "react-pdf";
+import dynamic from "next/dynamic";
+
 import { FileText, Download } from "lucide-react";
 import { withAppWindow } from "../hoc/withAppWindow";
 import { WindowId } from "@/lib/constants";
 import WindowControls from "../ui/WindowControls";
-import { usePDFJS } from "@/lib/hooks/usePDFjs";
+import PdfViewer from "../utils/PdfViewer";
 
 const Resume = () => {
-  const [numPages, setNumPages] = useState<number>();
-  usePDFJS(async (pdfjs) => {
-    console.log(pdfjs);
-  });
-  function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
-    setNumPages(numPages);
-  }
   return (
     <div
       id={WindowId.Resume}
-      className=" bg-white/90 backdrop-blur-xl shadow-2xl rounded-xl overflow-hidden border border-white/40 flex flex-col h-[700px]"
+      className="h-[700px] w-fit shadow-2xl rounded-xl overflow-hidden border border-white/40 flex flex-col "
     >
       <div
         id="window-header"
@@ -29,11 +22,7 @@ const Resume = () => {
           <div className="flex items-center gap-1">Resume.pdf</div>
         </div>
       </div>
-
-      <section
-        id="safari-content"
-        className="flex-1 overflow-y-auto bg-white/80 scroll-smooth"
-      >
+      <section className="flex-1 overflow-y-auto scroll-smooth">
         <header className="flex items-center justify-between h-14 px-4 bg-[#323639] text-gray-100 shadow-md sticky top-0 z-50 font-sans">
           <div className="flex items-center gap-3">
             <FileText size={18} className="text-gray-400" />
@@ -52,12 +41,11 @@ const Resume = () => {
             </div>
           </button>
         </header>
-        <Document file="files/resume.pdf" onLoadSuccess={onDocumentLoadSuccess}>
-          <Page pageNumber={1} />
-        </Document>
+        <PdfViewer />
       </section>
     </div>
   );
 };
 const ResumeWindow = withAppWindow(Resume, WindowId.Resume);
+
 export default ResumeWindow;
