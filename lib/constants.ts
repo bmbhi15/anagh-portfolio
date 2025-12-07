@@ -54,7 +54,7 @@ interface DockWindowApp {
   id: WindowId; // <-- typed against your WindowId enum
   name: string;
   icon: string;
-  canOpen: true;
+  canOpen: boolean;
 }
 
 // Special non-window item(s) like Trash
@@ -78,13 +78,13 @@ const dockApps: DockApp[] = [
     id: WindowId.Safari,
     name: "Articles", // was "Safari"
     icon: "safari.png",
-    canOpen: true,
+    canOpen: false,
   },
   {
     id: WindowId.Photos,
     name: "Gallery", // was "Photos"
     icon: "photos.png",
-    canOpen: true,
+    canOpen: false,
   },
   {
     id: WindowId.Contact,
@@ -133,20 +133,16 @@ const blogPosts = [
 
 const techStack = [
   {
-    category: "Frontend",
-    items: ["React.js", "Next.js", "TypeScript"],
+    category: "Frontend & Mobile",
+    items: ["React.js", "Next.js", "TypeScript", "React Native", "Expo"],
   },
   {
-    category: "Mobile",
-    items: ["React Native", "Expo"],
-  },
-  {
-    category: "Styling",
-    items: ["Tailwind CSS", "Sass", "CSS"],
+    category: "UI",
+    items: ["Shadcn UI", "MUI", "Tailwind CSS", "GSAP", "Three.js", "CSS"],
   },
   {
     category: "Backend",
-    items: ["Node.js", "Express", "Django"],
+    items: ["Node.js", "Express", "Django", "GraphQL", "REST", "Prisma"],
   },
   {
     category: "Database",
@@ -154,7 +150,16 @@ const techStack = [
   },
   {
     category: "Dev Tools",
-    items: ["Git", "GitHub", "Docker", "CodeRabbit", "Cursor"],
+    items: [
+      "Git",
+      "GitHub",
+      "Docker",
+      "Webpack",
+      "pnpm",
+      "yarn",
+      "CodeRabbit",
+      "Cursor",
+    ],
   },
 ];
 
@@ -164,28 +169,28 @@ const socials = [
     text: "Github",
     icon: "/icons/github.svg",
     color: "#f4656b",
-    link: "https://github.com",
+    link: "https://github.com/bmbhi15",
   },
   {
     id: 2,
-    text: "Platform",
+    text: "Email",
     icon: "/icons/atom.svg",
     color: "#4bcb63",
-    link: "https://platform.com",
+    link: "mailto:anaghpranshu8@gmail.com",
   },
   {
     id: 3,
     text: "Twitter/X",
     icon: "/icons/twitter.svg",
     color: "#ff866b",
-    link: "https://twitter.com",
+    link: "https://x.com/anagh90801",
   },
   {
     id: 4,
     text: "LinkedIn",
     icon: "/icons/linkedin.svg",
     color: "#05b6f6",
-    link: "https://linkedin.com",
+    link: "https://www.linkedin.com/in/anagh-pranshu/",
   },
 ];
 
@@ -261,20 +266,21 @@ export interface Location {
   imageUrl?: string;
   subtitle?: string;
   image?: string;
+  fileTitle?: string;
   children?: Location[];
 }
 
 export const WORK_LOCATION: Location = {
   id: 1,
   type: "work",
-  name: "Work",
+  name: "Projects",
   icon: "/icons/work.svg",
   kind: "folder",
   children: [
     // ▶ Project 1
     {
       id: 5,
-      name: "Nike Ecommerce Website Application",
+      name: "Cocktail Bar Landing Page",
       icon: "/images/folder.png",
       kind: "folder",
       position: "top-10 left-5", // icon position inside Finder
@@ -282,35 +288,54 @@ export const WORK_LOCATION: Location = {
       children: [
         {
           id: 1,
-          name: "Nike Project.txt",
+          name: "Cocktail Landing Page.txt",
           icon: "/images/txt.png",
           kind: "file",
           fileType: "txt",
           position: "top-5 left-10",
           description: [
-            "The Nike eCommerce website is a sleek and modern platform designed for shopping the latest Nike collections.",
-            "Instead of a simple online store, it delivers an immersive experience with bold visuals, interactive product displays, and smooth navigation.",
-            "Think of it like walking into a flagship Nike store—but right from your phone or laptop.",
-            "It's built with Next.js and Tailwind, ensuring fast performance, responsive design, and a clean, premium look.",
+            "Velvet Pour is a cocktail landing page built with Next.js, GSAP, and Tailwind CSS.",
+            "The site uses server-side rendering, structured content, and well-optimized metadata to improve SEO and initial load performance.",
+            "Custom GSAP timelines add smooth scroll-based animations while maintaining good performance and core web vitals.",
+            "The UI is fully responsive, with a clear visual hierarchy, accessible typography, and reusable Tailwind components.",
           ],
+          fileTitle: "Project Summary",
         },
         {
           id: 2,
-          name: "nike.com",
+          name: "velvet-pour.com",
           icon: "/images/safari.png",
           kind: "file",
           fileType: "url",
-          href: "https://youtu.be/fZdTYswuZjU?si=Awjl-pIst9e09_UU",
+          href: "https://cocktail-gsap-website-lrph09rr3-anagh-pranshus-projects.vercel.app/",
           position: "top-10 right-20",
         },
         {
           id: 4,
-          name: "nike.png",
+          name: "preview_website_2.png",
           icon: "/images/image.png",
           kind: "file",
           fileType: "img",
-          position: "top-52 right-80",
-          imageUrl: "/images/project-1.png",
+          position: "top-45 right-50",
+          imageUrl: "/images/project1/art.png",
+        },
+        {
+          id: 5,
+          name: "preview_website_1.png",
+          icon: "/images/image.png",
+          kind: "file",
+          fileType: "img",
+          position: "top-45 right-95",
+          imageUrl: "/images/project1/hero.png",
+        },
+        {
+          id: 5,
+          name: "preview_website_3.png",
+          icon: "/images/image.png",
+          kind: "file",
+          fileType: "img",
+          position: "top-45 right-0",
+          imageUrl: "/images/project1/menu.png",
         },
       ],
     },
@@ -318,51 +343,7 @@ export const WORK_LOCATION: Location = {
     // ▶ Project 2
     {
       id: 6,
-      name: "AI Resume Analyzer",
-      icon: "/images/folder.png",
-      kind: "folder",
-      position: "top-52 right-80",
-      windowPosition: "top-[20vh] left-7",
-      children: [
-        {
-          id: 1,
-          name: "AI Resume Analyzer Project.txt",
-          icon: "/images/txt.png",
-          kind: "file",
-          fileType: "txt",
-          position: "top-5 right-10",
-          description: [
-            "AI Resume Analyzer is a smart tool that helps you perfect your resume with instant feedback.",
-            "Instead of guessing what recruiters want, you get AI-powered insights on keywords, formatting, and overall impact.",
-            "Think of it like having a career coach—pointing out strengths, fixing weaknesses, and boosting your chances of landing interviews.",
-            "It's built with Next.js and Tailwind, so it runs fast, looks professional, and works seamlessly on any device.",
-          ],
-        },
-        {
-          id: 2,
-          name: "ai-resume-analyzer.com",
-          icon: "/images/safari.png",
-          kind: "file",
-          fileType: "url",
-          href: "https://youtu.be/iYOz165wGkQ?si=R1hs8Legl200m0Cl",
-          position: "top-20 left-20",
-        },
-        {
-          id: 4,
-          name: "ai-resume-analyzer.png",
-          icon: "/images/image.png",
-          kind: "file",
-          fileType: "img",
-          position: "top-52 left-80",
-          imageUrl: "/images/wallpaper.jpg",
-        },
-      ],
-    },
-
-    // ▶ Project 3
-    {
-      id: 7,
-      name: "Food Delivery App",
+      name: "Apple Macbook Product Page Copy",
       icon: "/images/folder.png",
       kind: "folder",
       position: "top-10 left-80",
@@ -370,35 +351,54 @@ export const WORK_LOCATION: Location = {
       children: [
         {
           id: 1,
-          name: "Food Delivery App Project.txt",
+          name: "Apple Macbook Product Page Copy.txt",
           icon: "/images/txt.png",
           kind: "file",
           fileType: "txt",
           position: "top-5 left-10",
           description: [
-            "Our Food Delivery App is a fast and convenient way to order meals from your favorite restaurants.",
-            "Instead of making calls or waiting in line, you can browse menus, customize orders, and track deliveries in real time.",
-            "Think of it like having your favorite restaurants in your pocket—ready to deliver anytime, anywhere.",
-            "It’s built with React Native, so it works smoothly on both iOS and Android with a clean, modern design.",
+            "Apple MacBook Pro product page clone built with Next.js, Tailwind CSS, Three.js, and GSAP.",
+            "Implements an interactive 3D MacBook model using Three.js, integrated into the layout to showcase hardware-focused sections.",
+            "Uses GSAP for scroll-triggered animations to smoothly reveal content and mimic Apple-style narrative page transitions.",
+            "Leverages server-side rendering, responsive Tailwind components, and optimized media to keep the page performant and production-ready.",
           ],
+          fileTitle: "Project Summary",
         },
         {
           id: 2,
-          name: "food-delivery-app.com",
+          name: "macbook-m4.com",
           icon: "/images/safari.png",
           kind: "file",
           fileType: "url",
-          href: "https://youtu.be/LKrX390fJMw?si=cExkuVhf2DTV9G2-",
+          href: "https://apple-page-copy.vercel.app/",
           position: "top-10 right-20",
         },
         {
           id: 4,
-          name: "food-delivery-app.png",
+          name: "preview1.png",
           icon: "/images/image.png",
           kind: "file",
           fileType: "img",
-          position: "top-52 right-80",
-          imageUrl: "/images/project-3.png",
+          position: "top-45 right-95",
+          imageUrl: "/images/project2/hero.png",
+        },
+        {
+          id: 5,
+          name: "preview2.png",
+          icon: "/images/image.png",
+          kind: "file",
+          fileType: "img",
+          position: "top-45 right-50",
+          imageUrl: "/images/project2/model.png",
+        },
+        {
+          id: 6,
+          name: "preview3.png",
+          icon: "/images/image.png",
+          kind: "file",
+          fileType: "img",
+          position: "top-45 right-0",
+          imageUrl: "/images/project2/footer.png",
         },
       ],
     },
@@ -419,7 +419,7 @@ const ABOUT_LOCATION: Location = {
       kind: "file",
       fileType: "img",
       position: "top-10 left-5",
-      imageUrl: "/images/adrian.jpg",
+      imageUrl: "/images/about/me.jpeg",
     },
     {
       id: 2,
@@ -427,8 +427,8 @@ const ABOUT_LOCATION: Location = {
       icon: "/images/image.png",
       kind: "file",
       fileType: "img",
-      position: "top-28 right-72",
-      imageUrl: "/images/adrian-2.jpg",
+      position: "top-10 right-5",
+      imageUrl: "/images/about/casual-me.jpeg",
     },
     {
       id: 3,
@@ -436,8 +436,8 @@ const ABOUT_LOCATION: Location = {
       icon: "/images/image.png",
       kind: "file",
       fileType: "img",
-      position: "top-52 left-80",
-      imageUrl: "/images/adrian-3.jpeg",
+      position: "top-45 left-80",
+      imageUrl: "/images/about/conference-me.jpeg",
     },
     {
       id: 4,
@@ -445,15 +445,17 @@ const ABOUT_LOCATION: Location = {
       icon: "/images/txt.png",
       kind: "file",
       fileType: "txt",
-      position: "top-60 left-5",
+      position: "top-45 left-5",
       subtitle: "Meet the Developer Behind the Code",
       image: "/images/adrian.jpg",
       description: [
-        "Hey! I’m Adrian 👋, a web developer who enjoys building sleek, interactive websites that actually work well.",
-        "I specialize in JavaScript, React, and Next.js—and I love making things feel smooth, fast, and just a little bit delightful.",
-        "I’m big on clean UI, good UX, and writing code that doesn’t need a search party to debug.",
-        "Outside of dev work, you'll find me tweaking layouts at 2AM, sipping overpriced coffee, or impulse-buying gadgets I absolutely convinced myself I needed 😅",
+        "Welcome to my portfolio traveller, I'm Anagh, Nice to meet you.",
+        "I'm a Full-stack Engineer with 2 years of experience building analytics dashboards, mobile apps and marketing landing pages at a fast-paced startup.",
+        "I specialize in JavaScript, React, and Next.js. I'm big on learning tech through first principles thinking and I usually have a good fundamental understanding of the tech",
+        "I love making beautiful UIs with good UX and stunning animations. I like to make intuitive designs and highly performant websites that feel incredibly fast !!",
+        "If you couldn't already tell I love to geek on anime and I'm passionate about cricket and chess. We can connect over a game of chess !",
       ],
+      fileTitle: "Professional Summary",
     },
   ],
 };

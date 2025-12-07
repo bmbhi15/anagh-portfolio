@@ -10,10 +10,7 @@ const ImgFile = () => {
   const imgWindow = windows.imgfile;
   const url = imgWindow.data;
   return (
-    <div
-      id={WindowId.ImgFile}
-      className=" bg-white/90 backdrop-blur-xl shadow-2xl rounded-xl overflow-hidden border border-white/40 flex flex-col h-[700px]"
-    >
+    <div id={WindowId.ImgFile}>
       <div
         id="window-header"
         className="bg-[#f3f4f6] border-b border-gray-300/60 px-4 py-3 flex items-center justify-between shrink-0"

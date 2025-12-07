@@ -47,7 +47,10 @@ const Finder = () => {
         if (!item.fileType) return;
 
         if (item.fileType === "txt") {
-          openWindow(WindowId.TxtFile, item.description);
+          openWindow(WindowId.TxtFile, {
+            title: item.fileTitle,
+            description: item.description,
+          });
         }
         if (item.fileType === "img") {
           openWindow(WindowId.ImgFile, item.imageUrl);
