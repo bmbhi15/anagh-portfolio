@@ -307,7 +307,7 @@ export const WORK_LOCATION: Location = {
           icon: "/images/safari.png",
           kind: "file",
           fileType: "url",
-          href: "https://cocktail-gsap-website-lrph09rr3-anagh-pranshus-projects.vercel.app/",
+          href: "https://cocktail-gsap-website-wine.vercel.app/",
           position: "top-10 right-20",
         },
         {
