@@ -1,6 +1,4 @@
 "use client";
-import dynamic from "next/dynamic";
-import Image from "next/image";
 import NavBar from "@/components/NavBar";
 import WelcomeText from "@/components/WelcomeText";
 import Docker from "@/components/Docker";
@@ -11,10 +9,15 @@ import ContactWindow from "@/components/windows/Contact";
 import FinderWindow from "@/components/windows/Finder";
 import TxtFileWindow from "@/components/windows/TxtFile";
 import ImgFileWindow from "@/components/windows/ImgFile";
+import { useState, useEffect, useRef } from "react";
 
 function Home() {
+  const [isVideoLoaded, setVideoLoaded] = useState<boolean>(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {}, [isVideoLoaded]);
   return (
     <>
+      {!isVideoLoaded ? <p>Loading ...</p> : <></>}
       <main id="main-container">
         <NavBar />
         <WelcomeText />
@@ -28,6 +31,7 @@ function Home() {
         <ImgFileWindow />
       </main>
       <video
+        ref={videoRef}
         id="background-video"
         playsInline
         muted
@@ -35,6 +39,11 @@ function Home() {
         autoPlay
         loop
         src="/videos/the-shadow-monarch-hd.mp4"
+        poster="/videos/poster.png"
+        // onPlay={() => {
+        //   console.log("play started");
+        //   setVideoLoaded(true);
+        // }}
       />
     </>
   );
