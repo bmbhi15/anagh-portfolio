@@ -307,7 +307,7 @@ export const WORK_LOCATION: Location = {
           icon: "/images/safari.png",
           kind: "file",
           fileType: "url",
-          href: "https://cocktail-gsap-website-lrph09rr3-anagh-pranshus-projects.vercel.app/",
+          href: "https://cocktail-gsap-website-wine.vercel.app/",
           position: "top-10 right-20",
         },
         {
@@ -446,7 +446,7 @@ const ABOUT_LOCATION: Location = {
       kind: "file",
       fileType: "txt",
       position: "top-45 left-5",
-      subtitle: "Meet the Developer Behind the Code",
+      subtitle: "About Me",
       image: "/images/adrian.jpg",
       description: [
         "Welcome to my portfolio traveller, I'm Anagh, Nice to meet you.",
