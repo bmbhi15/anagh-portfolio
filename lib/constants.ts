@@ -446,7 +446,7 @@ const ABOUT_LOCATION: Location = {
       kind: "file",
       fileType: "txt",
       position: "top-45 left-5",
-      subtitle: "Meet the Developer Behind the Code",
+      subtitle: "About Me",
       image: "/images/adrian.jpg",
       description: [
         "Welcome to my portfolio traveller, I'm Anagh, Nice to meet you.",
