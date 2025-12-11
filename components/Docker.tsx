@@ -1,10 +1,12 @@
 "use client";
+import { useMediaQuery } from "react-responsive";
 import { RefObject, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { dockApps, WindowId } from "@/lib/constants";
 import { Tooltip } from "react-tooltip";
 import { useWindowStore } from "@/lib/zustand/windowStore";
+import Image from "next/image";
 import clsx from "clsx";
 const HEIGHT = {
   min_h: 0,
@@ -77,6 +79,7 @@ const addEventListenerToDock = (
 };
 
 const Docker = () => {
+  const isLargeScreen = useMediaQuery({ query: "(min-width: 1920px)" });
   const containerRef = useRef<HTMLUListElement>(null);
   const { windows, openWindow } = useWindowStore();
 
@@ -94,8 +97,8 @@ const Docker = () => {
   };
 
   return (
-    <section id="dock" className="z-[2000]">
-      <div className="dock-container">
+    <section id="dock" className="">
+      <div className="dock-container ">
         <ul ref={containerRef} className="flex flex-row space-x-5">
           {dockApps.map((app) => (
             <li key={app.id} className="dock-icon">
@@ -109,10 +112,12 @@ const Docker = () => {
                   }
                 }}
               >
-                <img
+                <Image
                   src={`/images/${app.icon}`}
                   alt={app.name}
                   className="cursor-pointer"
+                  height={512}
+                  width={512}
                 />
                 {app.canOpen ? (
                   <div

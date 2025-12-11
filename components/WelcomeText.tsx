@@ -1,5 +1,5 @@
 "use client";
-
+import { useMediaQuery } from "react-responsive";
 import { RefObject, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -10,31 +10,33 @@ const HEIGHT = {
   max_h: -50,
 };
 const SMALL_WEIGHT = {
-  min_w: 300,
+  min_w: 400,
   max_w: 700,
 };
 const LARGE_WEIGHT = {
-  min_w: 300,
-  max_w: 800,
+  min_w: 400,
+  max_w: 900,
 };
 const SCALE = {
   min_s: 1,
   max_s: 2,
 };
 
-const renderText = (text: string, type: string) => {
+const renderText = (text: string, type: string, isLargeScreen: boolean) => {
   const splitText = [...text];
 
   const splitTextRender = splitText.map((char, id) => (
     <span
       className={clsx(
         {
-          "text-4xl": type === "title",
-          "text-[170px]": type === "subtitle",
-          "font-light": type === "subtitle",
+          "text-4xl": type === "title" && isLargeScreen,
+          "text-[140px]": type === "subtitle" && isLargeScreen,
+          "text-2xl": type === "title",
+          "text-[80px]": type === "subtitle",
         },
-        "text-[#323aa8]"
+        "glow"
       )}
+      style={{ fontVariationSettings: `"wght" ${400}` }}
       key={`${id}`}
       id={`${type}_${id}`}
     >
@@ -75,9 +77,10 @@ const addEventListenerToDiv = (
       const { max_s, min_s } = SCALE;
       const intensity = calculateIntensity(e, left, elem);
       const idSelector = `#${type}_${key}`;
+      const wt = min_w + intensity * (max_w - min_w);
       gsap.to(idSelector, {
         y: min_h + (max_h - min_h) * intensity,
-        fontWeight: min_w + intensity * (max_w - min_w),
+        fontVariationSettings: `"wght" ${wt}`,
         scale: 2,
         duration: 1,
       });
@@ -92,7 +95,7 @@ const addEventListenerToDiv = (
       const { min_w } = type === "subtitle" ? LARGE_WEIGHT : SMALL_WEIGHT;
       const idSelector = `#${type}_${key}`;
       gsap.to(idSelector, {
-        fontWeight: min_w,
+        fontVariationSettings: `wght ${min_w}`,
         duration: 1.5,
       });
     });
@@ -108,6 +111,7 @@ const addEventListenerToDiv = (
 };
 
 const WelcomeText = () => {
+  const isLargeScreen = useMediaQuery({ query: "(min-width: 1920px)" });
   const titleRef = useRef<HTMLDivElement>(null);
   const subtitleRef = useRef<HTMLDivElement>(null);
 
@@ -127,10 +131,10 @@ const WelcomeText = () => {
   return (
     <section id="welcome">
       <div ref={titleRef} id="title">
-        {renderText("Hey, welcome to my", "title")}
+        {renderText("Hey, welcome to my", "title", isLargeScreen)}
       </div>
       <div ref={subtitleRef} id="subtitle">
-        {renderText("Portfolio", "subtitle")}
+        {renderText("Portfolio", "subtitle", isLargeScreen)}
       </div>
     </section>
   );
