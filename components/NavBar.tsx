@@ -1,37 +1,46 @@
 "use client";
-import { useMediaQuery } from "react-responsive";
 import { navLinks, navIcons } from "@/lib/constants";
 import dayjs from "dayjs";
 import Image from "next/image";
 import { useWindowStore } from "@/lib/zustand/windowStore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 
 const NavBar = () => {
-  const isLargeScreen = useMediaQuery({ query: "(min-width: 1920px)" });
-  useEffect(() => {
-    console.log("Is Large Screen");
-    console.log(isLargeScreen);
-  }, [isLargeScreen]);
   const { openWindow } = useWindowStore();
+  const [time, setTime] = useState<Date>(new Date());
+
+  useEffect(() => {
+    const tick = () => {
+      setTime(new Date());
+    };
+
+    const timerId = setInterval(tick, 60000);
+    return () => {
+      clearInterval(timerId);
+    };
+  }, []);
+  const formattedTime = time
+    .toLocaleString("en-GB", {
+      weekday: "short",
+      day: "2-digit",
+      month: "short",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    })
+    .replace(/,/g, "");
   return (
-    <nav
-      className={clsx({
-        "p-5 px-6": isLargeScreen,
-        "p-2 px-4": !isLargeScreen,
-      })}
-    >
+    <nav className="p-1 3xl:p-2 px-6 3xl:px-8">
       <div>
         <Image
           src="/images/logo.svg"
           alt="Apple Logo svg-glow"
-          className="mb-1 svg-glow"
-          width={isLargeScreen ? 30 : 16}
-          height={isLargeScreen ? 30 : 16}
+          className="mb-1 svg-glow  size-4 3xl:size-6"
+          width={16}
+          height={16}
         />
-        <p className={clsx("mr-10 text-glow", { "text-2xl": isLargeScreen })}>
-          Anagh Pranshu
-        </p>
+        <p className="mr-10 text-glow 3xl:text-xl">Anagh Pranshu</p>
         <ul>
           {navLinks.map((link) => (
             <li
@@ -40,36 +49,26 @@ const NavBar = () => {
                 openWindow(link.type, null);
               }}
             >
-              <p
-                className={clsx("text-glow", {
-                  "text-2xl": isLargeScreen,
-                })}
-              >
-                {link.name}
-              </p>
+              <p className="text-glow 3xl:text-xl">{link.name}</p>
             </li>
           ))}
         </ul>
       </div>
-      <div className={clsx("space-x-10", { "space-x-15": isLargeScreen })}>
-        <ul className={clsx({ "gap-8": isLargeScreen })}>
+      <div className="space-x-10 3xl:space-x-15">
+        <ul className="3xl:gap-8">
           {navIcons.map((link) => (
             <li key={link.id}>
               <Image
-                className="svg-glow "
+                className="svg-glow  size-4 3xl:size-6"
                 src={link.img}
                 alt="link.id"
-                width={isLargeScreen ? 30 : 18}
-                height={isLargeScreen ? 30 : 18}
+                width={24}
+                height={24}
               />
             </li>
           ))}
         </ul>
-        <time
-          className={clsx("font-bold text-glow", { "text-2xl": isLargeScreen })}
-        >
-          {dayjs().format("ddd DD MMM hh:mm A ")}
-        </time>
+        <time className="text-bold text-glow 3xl:text-xl">{formattedTime}</time>
       </div>
     </nav>
   );
