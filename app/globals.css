@@ -71,7 +71,7 @@ body {
   }
 
   nav {
-    @apply flex justify-between items-center select-none font-bold z-4000 text-white;
+    @apply relative flex justify-between items-center select-none font-bold z-4000 text-white;
     backdrop-filter: blur(8px);
     background: var(--lg-bg-color);
     box-shadow: inset 0px 0px 0px var(--lg-highlight),
