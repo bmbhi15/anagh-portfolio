@@ -11,15 +11,12 @@ const Resume = () => {
   return (
     <div
       id={WindowId.Resume}
-      className="h-[700px] w-fit shadow-2xl rounded-xl overflow-hidden border border-white/40 flex flex-col "
+      className="h-[500px] w-fit shadow-2xl rounded-xl overflow-hidden  flex flex-col "
     >
-      <div
-        id="window-header"
-        className="bg-[#f3f4f6] border-b border-gray-300/60 px-4 py-3 flex items-center justify-between shrink-0"
-      >
+      <div id="window-header">
         <div className="flex items-center gap-6 w-1/4">
           <WindowControls windowId={WindowId.Resume} />
-          <div className="flex items-center gap-1">Resume.pdf</div>
+          <div className="flex items-center gap-1 text-glow">Resume.pdf</div>
         </div>
       </div>
       <section className="flex-1 overflow-y-auto scroll-smooth">

@@ -8,47 +8,45 @@ const Contact = () => {
     <div id={WindowId.Contact}>
       <div id="window-header">
         <WindowControls windowId={WindowId.Contact} />
-        <p>{WindowId.Contact}</p>
+        <p className="text-glow">{WindowId.Contact}</p>
       </div>
-      <section className="h-full">
-        <div className="text-center mb-8 space-y-2 mt-10 ">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-white shadow-lg rounded-full mb-2 text-3xl animate-bounce-slow">
+      <section className="content">
+        <div className="text-center mb-8 space-y-2 pt-5 ">
+          <div className="inline-flex items-center justify-center w-14 h-14 bg-zinc-950 opacity-60 shadow-lg rounded-full mb-2 text-3xl animate-bounce-slow">
             👋
           </div>
-          <h3 className="text-2xl font-bold text-gray-800 tracking-tight">
+          <h3 className="text-2xl font-bold text-white text-glow tracking-tight">
             {"Let's Connect"}
           </h3>
-          <p className="text-gray-500 max-w-md mx-auto text-sm leading-relaxed">
+          <p className="text-gray-200 max-w-md text-glow mx-auto text-sm leading-relaxed">
             {"Got an idea? A bug to squash? Or just wanna talk tech? I'm in."}
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 gap-10  mx-10 ">
+        <div className="grid grid-cols-2 sm:grid-cols-2 gap-x-10 gap-y-6  mx-10 ">
           {socials.map(({ id, text, icon, color, link }) => (
             <a
               key={id}
               href={link}
               target="_blank"
               rel="noopener noreferrer"
-              className="  flex items-center p-4 bg-white rounded-2xl shadow-sm border border-gray-100 hover:border-transparent hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300 overflow-hidden"
+              className="  flex items-center p-2 px-4  bg-zinc-800 rounded-xl shadow-sm border border-gray-900 hover:border-transparent hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300 overflow-hidden"
             >
-              {/* Hover Background Fill */}
               <div className="absolute inset-0 bg-[var(--hover-color)] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
 
-              {/* Icon Box */}
               <div
                 style={{ backgroundColor: color }}
-                className="relative z-10 flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center shadow-md group-hover:bg-white/20 group-hover:backdrop-blur-sm transition-colors duration-300"
+                className="relative z-10 flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center shadow-md group-hover:bg-white/20 group-hover:backdrop-blur-sm transition-colors duration-300"
               >
-                <img src={icon} alt={text} className="w-6 h-6" />
+                <img src={icon} alt={text} className="w-4 h-4" />
               </div>
 
               {/* Text Content */}
               <div className="relative z-10 ml-4 flex-grow">
-                <span className="text-sm font-medium text-gray-400 group-hover:text-white/80 uppercase tracking-wider text-[10px] block mb-0.5">
+                <span className="text-[8px] font-medium text-white text-glow group-hover:text-white/80 uppercase tracking-wider block mb-0.5">
                   Connect on
                 </span>
-                <span className="text-lg font-bold text-gray-800 group-hover:text-white transition-colors duration-300">
+                <span className="text-md font-bold text-white text-glow group-hover:text-white transition-colors duration-300">
                   {text}
                 </span>
               </div>
