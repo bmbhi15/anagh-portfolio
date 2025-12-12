@@ -146,7 +146,7 @@ const Docker = () => {
                 {app.canOpen ? (
                   <div
                     className={clsx(
-                      "size-1.5 rounded-full bg-amber-50 absolute  left-1/2 -translate-x-1/2 ",
+                      "size-1 mt-0.5 rounded-full bg-blue-400 opacity-70 glow absolute  left-1/2 -translate-x-1/2 ",
                       {
                         block: windows[app.id as WindowId].isOpen,
                         hidden: !windows[app.id as WindowId].isOpen,

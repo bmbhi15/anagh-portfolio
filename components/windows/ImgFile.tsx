@@ -11,13 +11,10 @@ const ImgFile = () => {
   const url = imgWindow.data;
   return (
     <div id={WindowId.ImgFile}>
-      <div
-        id="window-header"
-        className="bg-[#f3f4f6] border-b border-gray-300/60 px-4 py-3 flex items-center justify-between shrink-0"
-      >
+      <div id="window-header">
         <div className="flex items-center gap-6 w-1/4">
           <WindowControls windowId={WindowId.ImgFile} />
-          <div className="flex items-center gap-1">Photo</div>
+          <div className="flex items-center gap-1 text-glow">Photo</div>
         </div>
       </div>
 

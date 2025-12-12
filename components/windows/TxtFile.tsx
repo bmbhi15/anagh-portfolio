@@ -12,20 +12,19 @@ const TxtFile = () => {
   const textData = data.description as string[];
   const title = data.title as string;
   return (
-    <div className="w-1/2 h-[200px] bg-white shadow-2xl rounded-xl overflow-hidden border border-white/40 flex flex-col h-[700px]">
-      <div
-        id="window-header"
-        className="bg-[#f3f4f6] border-b border-gray-300/60 px-4 py-3 flex items-center justify-between shrink-0"
-      >
+    <div className="w-2xl backdrop-blur-3xl shadow-2xl rounded-xl overflow-hidden border border-white/40 flex flex-col">
+      <div id="window-header">
         <div className="flex items-center gap-6 w-fit">
           <WindowControls windowId={WindowId.TxtFile} />
-          <div className="flex items-center gap-1">{title}</div>
+          <div className="flex items-center gap-1 text-glow">{title}</div>
         </div>
       </div>
 
       <section className="w-full scroll-smooth space-y-5 p-10">
         {textData.map((txt, id) => (
-          <p key={id}>{txt}</p>
+          <p key={id} className="text-sm text-white text-glow">
+            {txt}
+          </p>
         ))}
       </section>
     </div>

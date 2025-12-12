@@ -22,7 +22,7 @@ const Finder = () => {
               className="icon"
             />
             <p
-              className="text-sm truncate"
+              className="text-sm text-white truncate text-glow "
               onClick={() => {
                 setLocation(item);
               }}
@@ -72,7 +72,7 @@ const Finder = () => {
               alt={item.name}
               onClick={() => handleOpenFolder(item)}
             />
-            <p>{item.name}</p>
+            <p className="text-white text-glow">{item.name}</p>
           </li>
         ))}
       </ul>
@@ -82,7 +82,7 @@ const Finder = () => {
     <div id={WindowId.Finder}>
       <div id="window-header">
         <WindowControls windowId={WindowId.Finder} />
-        <p>{WindowId.Finder}</p>
+        <p className="text-glow">{WindowId.Finder}</p>
       </div>
       <div className="h-full flex flex-row">
         <div className="sidebar">

@@ -8,7 +8,7 @@ const Terminal = () => {
     <div>
       <div id="window-header">
         <WindowControls windowId={WindowId.Terminal} />
-        <p className="col-center">Terminal</p>
+        <p className="col-center text-glow">Terminal</p>
       </div>
       <section id="terminal">
         <header className="terminal-header">
@@ -19,7 +19,7 @@ const Terminal = () => {
           <p>tech-stack.ts · powered by React &amp; Tailwind</p>
         </header>
 
-        <div className="terminal-body">
+        <div className="terminal-body ">
           <section className="intro">
             <p>$ cat tech-stack.json</p>
             <p>
