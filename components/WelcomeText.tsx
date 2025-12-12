@@ -1,9 +1,11 @@
 "use client";
-import { useMediaQuery } from "react-responsive";
 import { RefObject, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import clsx from "clsx";
+
+const DEFAULT_WIDTH = 1280;
+const DEFAULT_WIDTH_LARGE = 1920;
 
 const HEIGHT = {
   min_h: 0,
@@ -11,7 +13,7 @@ const HEIGHT = {
 };
 const SMALL_WEIGHT = {
   min_w: 400,
-  max_w: 700,
+  max_w: 900,
 };
 const LARGE_WEIGHT = {
   min_w: 400,
@@ -22,19 +24,17 @@ const SCALE = {
   max_s: 2,
 };
 
-const renderText = (text: string, type: string, isLargeScreen: boolean) => {
+const renderText = (text: string, type: string) => {
   const splitText = [...text];
 
   const splitTextRender = splitText.map((char, id) => (
     <span
       className={clsx(
         {
-          "text-4xl": type === "title" && isLargeScreen,
-          "text-[140px]": type === "subtitle" && isLargeScreen,
-          "text-2xl": type === "title",
-          "text-[80px]": type === "subtitle",
+          "text-2xl 3xl:text-4xl": type === "title",
+          "text-[60px] 3xl:text-[100px] font-cinzel": type === "subtitle",
         },
-        "glow"
+        "text-glow glow"
       )}
       style={{ fontVariationSettings: `"wght" ${400}` }}
       key={`${id}`}
@@ -50,11 +50,18 @@ const calculateIntensity = (
   leftContainer: number,
   elem: HTMLSpanElement
 ) => {
+  const screenWidth = typeof window !== "undefined" ? window.innerWidth : 0;
+  const num = screenWidth - DEFAULT_WIDTH;
+  const den = DEFAULT_WIDTH_LARGE - DEFAULT_WIDTH;
+  const decay_factor = 6 + num / den;
   const { left, width } = elem.getBoundingClientRect();
   const mouseX = e.clientX - leftContainer;
   const elemX = left - leftContainer + width / 2;
   const distance = mouseX - elemX;
-  const intensity = Math.exp(-(distance ** 2) / 20000);
+  const decay_low = 2000;
+  const decay_high = 7000;
+  console.log("This is my decay factor", decay_factor);
+  const intensity = Math.exp(-(distance ** 2) / (8 * 1000));
 
   return intensity;
 };
@@ -68,7 +75,6 @@ const addEventListenerToDiv = (
 
   const handleMouseMove = (e: MouseEvent) => {
     const characterElements = textRef.current?.querySelectorAll("span");
-
     if (!characterElements) return;
     characterElements.forEach((elem, key) => {
       const { max_h, min_h } = HEIGHT;
@@ -80,9 +86,9 @@ const addEventListenerToDiv = (
       const wt = min_w + intensity * (max_w - min_w);
       gsap.to(idSelector, {
         y: min_h + (max_h - min_h) * intensity,
+
         fontVariationSettings: `"wght" ${wt}`,
-        scale: 2,
-        duration: 1,
+        duration: 0.3,
       });
     });
   };
@@ -95,8 +101,9 @@ const addEventListenerToDiv = (
       const { min_w } = type === "subtitle" ? LARGE_WEIGHT : SMALL_WEIGHT;
       const idSelector = `#${type}_${key}`;
       gsap.to(idSelector, {
-        fontVariationSettings: `wght ${min_w}`,
-        duration: 1.5,
+        fontVariationSettings: `"wght" ${min_w}`,
+        duration: 0.5,
+        ease: "power2.inOut",
       });
     });
   };
@@ -111,7 +118,6 @@ const addEventListenerToDiv = (
 };
 
 const WelcomeText = () => {
-  const isLargeScreen = useMediaQuery({ query: "(min-width: 1920px)" });
   const titleRef = useRef<HTMLDivElement>(null);
   const subtitleRef = useRef<HTMLDivElement>(null);
 
@@ -131,10 +137,10 @@ const WelcomeText = () => {
   return (
     <section id="welcome">
       <div ref={titleRef} id="title">
-        {renderText("Hey, welcome to my", "title", isLargeScreen)}
+        {renderText("Hey, welcome to my", "title")}
       </div>
       <div ref={subtitleRef} id="subtitle">
-        {renderText("Portfolio", "subtitle", isLargeScreen)}
+        {renderText("Portfolio", "subtitle")}
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap");
 @import "tailwindcss";
 
 html,
@@ -28,8 +29,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
-  opacity: 1;
+  z-index: 1;
 }
 #heading3d {
   font: 2.75em "Cinzel", serif;
@@ -41,6 +41,7 @@ body {
   --font-georama: "Georama", sans-serif;
   --font-roboto: "Roboto Mono", monospace;
   --font-grandstander: "Grandstander", monospace;
+  --font-cinzel: "Cinzel", serif;
   --breakpoint-3xl: 1920px;
 }
 
@@ -63,6 +64,11 @@ body {
   main {
     @apply w-dvw h-dvh overflow-hidden;
   }
+  .text-glow {
+    text-shadow: 1px 1px 2px var(--lg-highlight), 0 0 1em var(--lg-highlight),
+      0 0 0.2em var(--lg-highlight);
+    opacity: 90%;
+  }
 
   nav {
     @apply flex justify-between items-center select-none font-bold z-4000 text-white;
@@ -77,18 +83,16 @@ body {
         @apply max-sm:hidden;
       }
     }
-    .text-glow {
-      text-shadow: 1px 1px 2px var(--lg-highlight), 0 0 1em var(--lg-highlight),
-        0 0 0.2em var(--lg-highlight);
-    }
+
     .svg-glow {
       filter: drop-shadow(1px 1px 2px var(--lg-highlight))
         drop-shadow(0 0 1em var(--lg-highlight))
         drop-shadow(0 0 0.2em var(--lg-highlight));
+      opacity: 80%;
     }
-    svg {
+    /* svg {
       filter: drop-shadow(2px 2px 2px rgba(16, 146, 190, 0.75));
-    }
+    } */
 
     ul {
       @apply flex items-center gap-5 max-sm:hidden;
@@ -108,28 +112,9 @@ body {
   .icon {
     @apply p-1 hover:bg-gray-200 rounded hover:cursor-default;
   }
-  .glow {
-    color: #44c7ff;
-    text-align: center;
-    /* -webkit-animation: glow 1s ease-in-out infinite alternate;
-    -moz-animation: glow 1s ease-in-out infinite alternate;
-    animation: glow 1s ease-in-out infinite alternate; */
-    /* text-shadow: 0 0 20px #fff, 0 0 30px #00364e, 0 0 40px #00364e,
-      0 0 50px #00364e, 0 0 60px #00364e, 0 0 70px #00364e, 0 0 80px #00364e; */
-  }
-  /* @-webkit-keyframes glow {
-    from {
-      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #000000,
-        0 0 40px #000000, 0 0 50px #000000, 0 0 60px #000000, 0 0 70px #000000;
-    }
-    to {
-      text-shadow: 0 0 20px #fff, 0 0 30px #00364e, 0 0 40px #00364e,
-        0 0 50px #00364e, 0 0 60px #00364e, 0 0 70px #00364e, 0 0 80px #00364e;
-    }
-  } */
 
   #welcome {
-    @apply text-gray-200 flex flex-col justify-center items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none max-sm:h-screen max-sm:w-full max-sm:px-10;
+    @apply text-gray-200 flex flex-col justify-center items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none max-sm:h-screen max-sm:w-full max-sm:px-10 z-100;
 
     .small-screen {
       @apply sm:hidden m-7 bg-red-300/20 backdrop-blur-lg p-3 rounded-md absolute top-10;
@@ -141,12 +126,12 @@ body {
   }
 
   #dock {
-    @apply absolute bottom-5 left-1/2 -translate-x-1/2 z-4000 select-none max-sm:hidden rounded-3xl;
+    @apply absolute bottom-5 left-1/2 -translate-x-1/2  z-4000 select-none max-sm:hidden rounded-3xl 3xl:rounded-full;
     box-shadow: 0 20px 20px rgba(16, 131, 213, 0.2),
       0 0 30px rgba(16, 131, 213, 0.2);
 
     .dock-container {
-      @apply justify-between rounded-3xl p-2 flex items-end gap-1.5;
+      @apply justify-between rounded-3xl 3xl:rounded-4xl px-5 p-3  3xl:px-10 3xl:p-5 flex items-end  3xl:space-x-10;
       backdrop-filter: blur(8px);
       background: var(--lg-bg-color);
       box-shadow: inset 1px 1px 0 var(--lg-highlight),
@@ -158,10 +143,12 @@ body {
     }
 
     .dock-icon {
-      @apply size-10 3xl:size-35 cursor-pointer relative;
+      @apply size-15 3xl:size-20  cursor-pointer relative z-4001;
 
       img {
         @apply object-cover object-center;
+        opacity: 85%;
+        backdrop-filter: blur(8px);
       }
     }
   }
