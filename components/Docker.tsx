@@ -33,8 +33,6 @@ const calculateTransformIntensity = (
   const den = DEFAULT_WIDTH_LARGE - DEFAULT_WIDTH;
   const decay_factor = 1 + 4 * (num / den);
   const { left, width } = elem.getBoundingClientRect();
-  console.log("left , width of something");
-  console.log(left, width);
   const mouseX = e.clientX - leftContainer;
   const elemX = left - leftContainer + width / 2;
   const distance = mouseX - elemX;
@@ -54,8 +52,6 @@ const addEventListenerToDock = (
     const iconElements = containerRef.current?.querySelectorAll("button");
     const screenWidth = typeof window !== "undefined" ? window.innerWidth : 0;
     const center_x = e.offsetX;
-    console.log("mouse position");
-    console.log(center_x);
     if (!iconElements) return;
     iconElements.forEach((elem) => {
       const { max_h, min_h } = HEIGHT;
