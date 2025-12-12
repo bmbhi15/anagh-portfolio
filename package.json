@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@next/font": "^14.2.15",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.19",
     "gsap": "^3.13.0",

@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 import NavBar from "@/components/NavBar";
 import WelcomeText from "@/components/WelcomeText";
 import Docker from "@/components/Docker";
@@ -9,10 +9,12 @@ import ContactWindow from "@/components/windows/Contact";
 import FinderWindow from "@/components/windows/Finder";
 import TxtFileWindow from "@/components/windows/TxtFile";
 import ImgFileWindow from "@/components/windows/ImgFile";
+import { useWebgl } from "@/lib/hooks/useWebgl";
 // import { useState, useEffect, useRef } from "react";
 // import Image from "next/image";
 
 function Home() {
+  useWebgl();
   // const [isVideoLoaded, setVideoLoaded] = useState<boolean>(false);
   // const videoRef = useRef<HTMLVideoElement>(null);
   // useEffect(() => {}, [isVideoLoaded]);
@@ -46,6 +48,7 @@ function Home() {
         //   setVideoLoaded(true);
         // }}
       /> */}
+      <canvas id="smoke-canvas"></canvas>
     </>
   );
 }
