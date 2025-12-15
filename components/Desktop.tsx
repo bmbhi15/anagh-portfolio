@@ -45,16 +45,20 @@ const Desktop = () => {
     <section id="desktop" className="max-w-fit ">
       <ul className="">
         {DESKTOP_LOCATION.children?.map((item) => (
-          <li key={item.id} className={`w-fit ${item.windowPosition}`}>
+          <li
+            key={item.id}
+            className={`w-fit cursor-pointer ${item.windowPosition}`}
+          >
             <Image
               src={item.icon}
               alt={item.name}
               onClick={() => handleOpenFolder(item)}
-              width={50}
-              height={50}
+              width={200}
+              height={200}
               preload={true}
+              className="glow-icon"
             />
-            <p className="text-white text-glow ">{item.name}</p>
+            <p className="font-bold text-glow ">{item.name}</p>
           </li>
         ))}
       </ul>

@@ -13,19 +13,19 @@ const Finder = () => {
 
   const renderList = (title: string, folderList: Location[]) => (
     <div>
-      <h3>{title}</h3>
+      <h3 className="text-glow text-white">{title}</h3>
       <ul>
         {folderList.map((item) => (
           <li key={item.name}>
             <Image
               src={title === "Projects" ? "/icons/work.svg" : item.icon}
               alt="icon"
-              className="icon"
+              className="icon svg-glow"
               height={20}
               width={20}
             />
             <p
-              className="text-sm text-white truncate text-glow "
+              className="text-sm truncate text-glow "
               onClick={() => {
                 setLocation(item);
               }}
@@ -67,17 +67,22 @@ const Finder = () => {
       }
     };
     return (
-      <ul className="grid grid-cols-3 grid-rows-2 w-full h-full">
+      <ul className="grid grid-cols-3 grid-rows-2 w-full h-full gap-y-3">
         {childFolders.map((item) => (
-          <li key={item.name}>
+          <li
+            key={item.name}
+            className="self-center py-2 glass-edge
+      "
+          >
             <Image
               src={item.icon}
               alt={item.name}
               onClick={() => handleOpenFolder(item)}
-              width={24}
-              height={24}
+              width={200}
+              height={200}
+              className="glow-icon"
             />
-            <p className="text-white text-glow">{item.name}</p>
+            <p className="text-glow">{item.name}</p>
           </li>
         ))}
       </ul>
@@ -89,7 +94,11 @@ const Finder = () => {
         <WindowControls windowId={WindowId.Finder} />
         <p className="text-glow">{WindowId.Finder}</p>
       </div>
-      <div className="h-full flex flex-row bg-[url(/images/solo-levelling-background.png)] bg-contain">
+      <div
+        className="h-full flex flex-row bg-[url(/images/solo-levelling-background.png)] bg-contain
+      bg-blend-darken
+      "
+      >
         <div className="sidebar">
           {renderList("Favourites", ROOT_LOCATION)}
           {WORK_LOCATION.children ? (
@@ -98,9 +107,7 @@ const Finder = () => {
             <></>
           )}
         </div>
-        <div className="content test-border">
-          {renderFolders(currentLocation)}
-        </div>
+        <div className="content">{renderFolders(currentLocation)}</div>
       </div>
     </div>
   );
