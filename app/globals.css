@@ -502,12 +502,12 @@ body {
   }
 
   #finder {
-    @apply absolute w-3xl left-40 top-20 shadow-2xl overflow-hidden rounded-xl;
+    @apply absolute w-3xl left-0 top-0 shadow-2xl overflow-hidden rounded-xl;
 
     .sidebar {
       @apply h-full w-48 border-r flex flex-col p-5 space-y-3;
-      backdrop-filter: blur(200px);
-      background: rgba(8, 60, 116, 0.4);
+      /* backdrop-filter: blur(200px); */
+      /* background: rgba(8, 60, 116, 0.4); */
       box-shadow: inset 1px 1px 0 var(--lg-highlight),
         inset 0 0 3.5px var(--lg-highlight);
       h3 {
@@ -532,17 +532,17 @@ body {
     }
 
     .content {
-      @apply flex-1 p-8  max-w-2xl relative;
-      backdrop-filter: blur(100px);
-      background: rgba(8, 60, 116, 0.4);
-      box-shadow: inset 1px 1px 0 var(--lg-highlight),
-        inset 0 0 3.5px var(--lg-highlight);
+      @apply flex-1 p-8  max-w-2xl;
+      /* backdrop-filter: blur(100px); */
+      /* background: rgba(8, 60, 116, 0.4); */
+      /* box-shadow: inset 1px 1px 0 var(--lg-highlight),
+        inset 0 0 3.5px var(--lg-highlight); */
 
       li {
-        @apply absolute flex items-center flex-col gap-3;
+        @apply flex items-center flex-col gap-3;
 
         img {
-          @apply object-contain object-center size-16 relative group-hover:scale-105;
+          @apply object-contain object-center size-20 relative group-hover:scale-105;
         }
 
         p {
@@ -578,19 +578,21 @@ body {
     }
   }
 
-  #home {
-    @apply relative z-0 max-sm:hidden;
+  #desktop {
+    @apply z-1000 relative max-sm:hidden mt-10 ml-10;
 
     ul {
+      @apply grid grid-cols-2 grid-rows-3 gap-2;
+
       li {
-        @apply absolute z-0 select-none flex items-center flex-col;
+        @apply z-1000 select-none flex  flex-col;
 
         img {
-          @apply group-hover:bg-gray-950/10 p-1 rounded-md;
+          @apply group-hover:bg-gray-950/10 p-1 rounded-md self-start h-14 w-14 3xl:h-20 3xl:w-20;
         }
 
         p {
-          @apply text-sm text-white text-center px-1 rounded-md group-hover:bg-blue-500 transition-colors max-w-40;
+          @apply text-xs 3xl:text-sm text-white  px-1 rounded-md group-hover:bg-blue-500 transition-colors max-w-40 self-start text-left;
         }
       }
     }

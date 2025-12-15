@@ -5,6 +5,7 @@ import WindowControls from "../ui/WindowControls";
 import { ROOT_LOCATION, WORK_LOCATION, Location } from "@/lib/constants";
 import { useLocationStore } from "@/lib/zustand/locationStore";
 import { useWindowStore } from "@/lib/zustand/windowStore";
+import Image from "next/image";
 
 const Finder = () => {
   const { currentLocation, setLocation } = useLocationStore();
@@ -16,10 +17,12 @@ const Finder = () => {
       <ul>
         {folderList.map((item) => (
           <li key={item.name}>
-            <img
+            <Image
               src={title === "Projects" ? "/icons/work.svg" : item.icon}
               alt="icon"
               className="icon"
+              height={20}
+              width={20}
             />
             <p
               className="text-sm text-white truncate text-glow "
@@ -64,13 +67,15 @@ const Finder = () => {
       }
     };
     return (
-      <ul className="relative">
+      <ul className="grid grid-cols-3 grid-rows-2 w-full h-full">
         {childFolders.map((item) => (
-          <li key={item.name} className={`${item.position}`}>
-            <img
+          <li key={item.name}>
+            <Image
               src={item.icon}
               alt={item.name}
               onClick={() => handleOpenFolder(item)}
+              width={24}
+              height={24}
             />
             <p className="text-white text-glow">{item.name}</p>
           </li>
@@ -84,7 +89,7 @@ const Finder = () => {
         <WindowControls windowId={WindowId.Finder} />
         <p className="text-glow">{WindowId.Finder}</p>
       </div>
-      <div className="h-full flex flex-row">
+      <div className="h-full flex flex-row bg-[url(/images/solo-levelling-background.png)] bg-contain">
         <div className="sidebar">
           {renderList("Favourites", ROOT_LOCATION)}
           {WORK_LOCATION.children ? (
@@ -93,7 +98,9 @@ const Finder = () => {
             <></>
           )}
         </div>
-        <div className="content">{renderFolders(currentLocation)}</div>
+        <div className="content test-border">
+          {renderFolders(currentLocation)}
+        </div>
       </div>
     </div>
   );
