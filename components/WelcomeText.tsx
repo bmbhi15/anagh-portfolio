@@ -34,7 +34,7 @@ const renderText = (text: string, type: string) => {
           "text-2xl 3xl:text-4xl": type === "title",
           "text-[60px] 3xl:text-[100px] font-cinzel": type === "subtitle",
         },
-        "text-glow glow"
+        "text-glow"
       )}
       style={{ fontVariationSettings: `"wght" ${400}` }}
       key={`${id}`}
