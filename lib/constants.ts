@@ -183,7 +183,7 @@ const socials = [
     text: "Twitter/X",
     icon: "/icons/twitter.svg",
     color: "#ff866b",
-    link: "https://x.com/anagh90801",
+    link: "https://x.com/dev_anagh_js",
   },
   {
     id: 4,
