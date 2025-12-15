@@ -507,8 +507,17 @@ const TRASH_LOCATION: Location = {
   ],
 };
 
+const DESKTOP_LOCATION: Location = {
+  id: 5,
+  type: "desktop",
+  name: "Desktop",
+  icon: "/icons/work.svg",
+  kind: "folder",
+  children: [...(<[]>ABOUT_LOCATION.children), ...(<[]>WORK_LOCATION.children)],
+};
+
 export const ROOT_LOCATION: Location[] = [
-  WORK_LOCATION,
+  DESKTOP_LOCATION,
   ABOUT_LOCATION,
   RESUME_LOCATION,
   TRASH_LOCATION,
@@ -535,4 +544,4 @@ const WINDOW_CONFIG: WindowConfig = {
   [WindowId.ImgFile]: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
 };
 
-export { INITIAL_Z_INDEX, WINDOW_CONFIG };
+export { INITIAL_Z_INDEX, WINDOW_CONFIG, DESKTOP_LOCATION };

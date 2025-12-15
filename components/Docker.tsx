@@ -125,7 +125,7 @@ const Docker = () => {
           className="flex flex-row space-x-6 3xl:space-x-10"
         >
           {dockApps.map((app) => (
-            <li key={app.id} className="dock-icon">
+            <li key={app.id} className="dock-icon glass-edge">
               <button
                 data-tooltip-id="dock-tooltip"
                 data-tooltip-content={app.name}
@@ -139,14 +139,14 @@ const Docker = () => {
                 <Image
                   src={`/images/${app.icon}`}
                   alt={app.name}
-                  className="cursor-pointer"
+                  className="cursor-pointer glow-icon"
                   height={512}
                   width={512}
                 />
                 {app.canOpen ? (
                   <div
                     className={clsx(
-                      "size-1 mt-0.5 rounded-full bg-blue-400 opacity-70 glow absolute  left-1/2 -translate-x-1/2 ",
+                      "size-1 mt-0.5 rounded-full bg-blue-400 opacity-70 absolute  left-1/2 -translate-x-1/2 ",
                       {
                         block: windows[app.id as WindowId].isOpen,
                         hidden: !windows[app.id as WindowId].isOpen,

@@ -4,6 +4,7 @@ import { withAppWindow } from "../hoc/withAppWindow";
 import { WindowId } from "@/lib/constants";
 import WindowControls from "../ui/WindowControls";
 import { useWindowStore } from "@/lib/zustand/windowStore";
+import Image from "next/image";
 
 const ImgFile = () => {
   const { windows } = useWindowStore();
@@ -19,7 +20,11 @@ const ImgFile = () => {
       </div>
 
       <section className="preview">
-        <img src={url as string} alt="photo" />
+        {url ? (
+          <Image src={url as string} alt="photo" height={2000} width={2000} />
+        ) : (
+          <></>
+        )}
       </section>
     </div>
   );
