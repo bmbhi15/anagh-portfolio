@@ -5,12 +5,12 @@ import { WindowId } from "@/lib/constants";
 import WindowControls from "../ui/WindowControls";
 const Terminal = () => {
   return (
-    <div>
+    <div id="terminal">
       <div id="window-header">
         <WindowControls windowId={WindowId.Terminal} />
         <p className="col-center text-glow">Terminal</p>
       </div>
-      <section id="terminal">
+      <section>
         <header className="terminal-header">
           <div className="identity">
             <p>anagh@macbook-pro</p>
