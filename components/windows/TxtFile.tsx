@@ -12,7 +12,10 @@ const TxtFile = () => {
   const textData = data.description as string[];
   const title = data.title as string;
   return (
-    <div className="w-2xl backdrop-blur-3xl shadow-2xl rounded-xl overflow-hidden border border-white/40 flex flex-col">
+    <div
+      id="txtfile"
+      className="w-2xl backdrop-blur-3xl shadow-2xl rounded-xl overflow-hidden border border-white/40 flex flex-col"
+    >
       <div id="window-header">
         <div className="flex items-center gap-6 w-fit">
           <WindowControls windowId={WindowId.TxtFile} />

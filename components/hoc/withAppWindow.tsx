@@ -18,7 +18,7 @@ export function withAppWindow<P extends object>(
 
     useGSAP(() => {
       Draggable.create(`#window-${windowId}`, {
-        bounds: document.getElementById("main-container"),
+        // bounds: document.getElementById("main-container"),
         onPress: () => focusWindow(windowId),
       });
     }, []);

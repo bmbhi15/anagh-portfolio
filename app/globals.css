@@ -295,14 +295,12 @@ body {
   } */
 
   #terminal {
-    @apply w-xl h-95 bg-zinc-950 text-zinc-100 opacity-95 
-      border border-zinc-800/80 rounded-b-2xl
-      shadow-[0_18px_60px_rgba(0,0,0,0.75)]
+    @apply absolute w-2xl -top-80 left-60 3xl:w-3xl  3xl:-top-100 3xl:left-80 h-95 bg-zinc-950 text-zinc-100 opacity-95 
       overflow-hidden flex flex-col
       font-mono text-xs sm:text-sm;
-    backdrop-filter: blur(200px);
 
     header {
+      @apply rounded-4xl;
       &.terminal-header {
         @apply px-4 pt-3 pb-2
           border-b border-zinc-800/70
@@ -331,7 +329,7 @@ body {
       @apply flex-1 overflow-auto
         px-4 py-3
         bg-gradient-to-b from-zinc-950 via-zinc-950/95 to-zinc-900
-        space-y-3;
+        space-y-3 rounded-3xl;
       backdrop-filter: blur(200px);
       .intro {
         p:first-child {
@@ -412,7 +410,7 @@ body {
     }
   }
   #contact {
-    @apply w-2xl 3xl:w-4xl h-100  rounded-xl overflow-hidden;
+    @apply absolute w-2xl -top-80 left-60 3xl:w-3xl  3xl:-top-100 3xl:left-80 h-100  rounded-xl overflow-hidden;
 
     .content {
       @apply h-full;
@@ -447,7 +445,7 @@ body {
   }
 
   #photos {
-    @apply max-w-3xl absolute top-96 left-1/2 -translate-y-1/2 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply max-w-3xl absolute -top-80 right-60  3xl:-top-100 3xl:right-80 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
     .sidebar {
       @apply w-3/12 flex-none flex flex-col p-5;
@@ -513,7 +511,7 @@ body {
   }
 
   #resume {
-    @apply w-fit h-fit absolute top-0 left-9/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-fit h-fit absolute -top-80 left-170   3xl:-top-100 3xl:left-300 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
     #window-header {
       h2 {
@@ -523,7 +521,7 @@ body {
   }
 
   #finder {
-    @apply absolute w-3xl left-0 top-0 shadow-2xl overflow-hidden rounded-xl;
+    @apply absolute w-2xl -top-80 left-60 3xl:w-3xl  3xl:-top-100 3xl:left-80 shadow-2xl overflow-hidden rounded-xl;
 
     .sidebar {
       @apply h-full w-48 border-r flex flex-col p-5 space-y-3;
@@ -582,15 +580,11 @@ body {
   }
 
   #txtfile {
-    @apply w-full absolute top-36 right-32 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
-
-    h2 {
-      @apply font-bold text-sm text-center w-full;
-    }
+    @apply w-full  absolute -top-80 left-170   3xl:-top-100 3xl:left-300 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
   }
 
   #imgfile {
-    @apply absolute  top-10 left-2/12 shadow-2xl  rounded-xl overflow-hidden;
+    @apply absolute -top-80 left-230   3xl:-top-100 3xl:left-350 shadow-2xl  rounded-xl overflow-hidden;
 
     #window-header {
       p {
