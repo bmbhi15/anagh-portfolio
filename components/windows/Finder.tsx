@@ -89,27 +89,51 @@ const Finder = () => {
     );
   };
   return (
-    <div id={WindowId.Finder}>
-      <div id="window-header">
-        <WindowControls windowId={WindowId.Finder} />
-        <p className="text-glow">{WindowId.Finder}</p>
-      </div>
-      <div
-        className="h-full flex flex-row bg-[url(/images/solo-levelling-background.png)] bg-contain
-      bg-blend-darken
-      "
-      >
-        <div className="sidebar">
-          {renderList("Favourites", ROOT_LOCATION)}
-          {WORK_LOCATION.children ? (
-            renderList("Projects", WORK_LOCATION.children)
-          ) : (
-            <></>
-          )}
+    <>
+      <div id={WindowId.Finder} className="system-border">
+        <div className="solo-levelling-border ">
+          <div id="" className="flex justify-between mb-2">
+            <WindowControls windowId={WindowId.Finder} />
+            <p className="text-glow">{WindowId.Finder}</p>
+          </div>
+          <div className="flex flex-row">
+            <div className="sidebar">
+              {renderList("Favourites", ROOT_LOCATION)}
+              {WORK_LOCATION.children ? (
+                renderList("Projects", WORK_LOCATION.children)
+              ) : (
+                <></>
+              )}
+            </div>
+            <div className="content">{renderFolders(currentLocation)}</div>
+          </div>
         </div>
-        <div className="content">{renderFolders(currentLocation)}</div>
       </div>
-    </div>
+      <svg>
+        <defs>
+          <filter
+            id="system-border-filter"
+            x="0%"
+            y="0%"
+            width="150%"
+            height="150%"
+          >
+            <feTurbulence
+              baseFrequency="0.4 0.01"
+              result="NOISE"
+              numOctaves="2"
+            />
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="NOISE"
+              scale="-20"
+              xChannelSelector="R"
+              yChannelSelector="R"
+            ></feDisplacementMap>
+          </filter>
+        </defs>
+      </svg>
+    </>
   );
 };
 const FinderWindow = withAppWindow(Finder, WindowId.Finder);

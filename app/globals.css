@@ -64,6 +64,21 @@ body {
   main {
     @apply w-dvw h-dvh overflow-hidden;
   }
+  .system-border {
+    @apply p-2;
+    border-width: 30px 0 30px 0;
+    border-color: rgb(68, 144, 210, 0.9);
+    border-style: inset;
+  }
+  /* .system-border::before {
+    position: absolute;
+    z-index: 4000;
+    content: "";
+    border-width: 10px 0 20px 0;
+    border-color: rgba(10, 49, 83, 0.9);
+    border-style: inset;
+  } */
+
   .text-glow {
     @apply text-[#FCFFFD] font-bold;
     text-shadow: 0 0 1em var(--lg-highlight), 0 0 1em var(--lg-highlight),
@@ -521,8 +536,28 @@ body {
   }
 
   #finder {
-    @apply absolute w-2xl -top-80 left-60 3xl:w-3xl  3xl:-top-100 3xl:left-80 shadow-2xl overflow-hidden rounded-xl;
+    @apply absolute w-2xl h-fit -top-80 left-60 3xl:w-3xl  3xl:-top-100 3xl:left-80 shadow-2xl overflow-hidden rounded-xl;
 
+    .solo-levelling-border {
+      @apply h-full;
+      position: relative;
+      z-index: 1;
+      padding: 20px;
+    }
+
+    .solo-levelling-border::before {
+      @apply h-full bg-[url(/images/solo-levelling-background.png)] bg-contain
+        bg-blend-darken;
+      content: "";
+      position: absolute;
+      inset: -5px;
+
+      border: 1px solid var(--lg-highlight);
+      filter: url(#system-border-filter);
+
+      z-index: -1;
+      pointer-events: none;
+    }
     .sidebar {
       @apply h-full w-48 border-r flex flex-col p-5 space-y-3;
       box-shadow: 1px 1px 0 var(--lg-highlight), 0 0 3.5px var(--lg-highlight),
@@ -580,7 +615,7 @@ body {
   }
 
   #txtfile {
-    @apply w-full  absolute -top-80 left-170   3xl:-top-100 3xl:left-300 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-1/4 3xl:w-full  absolute -top-80 left-170   3xl:-top-100 3xl:left-300 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
   }
 
   #imgfile {
