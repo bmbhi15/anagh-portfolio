@@ -14,6 +14,7 @@ body {
   background-position: center;
   --lg-bg-color: rgba(8, 60, 116, 0.2);
   --lg-highlight: rgb(68, 144, 210, 0.9);
+  --lg-border: rgba(190, 190, 190, 0.9);
 }
 #background-video {
   z-index: -1;
@@ -60,25 +61,100 @@ body {
   @apply border-4 border-amber-300;
 }
 
+@utility text-glow {
+  @apply text-[#FCFFFD] font-bold;
+  text-shadow: 0 0 1em var(--lg-highlight), 0 0 1em var(--lg-highlight),
+    0 0 1em black;
+  -webkit-text-stroke-color: white;
+  -webkit-text-stroke-width: 0.2px;
+}
+@utility glow {
+  @apply rounded-xs border-0;
+  opacity: 85%;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 10px 5px var(--lg-highlight),
+    inset 1px 1px 5px 1px var(--lg-highlight),
+    inset -1px -1px 10px 1px var(--lg-highlight);
+  /* backdrop-filter: blur(20px);
+  background: var(--lg-bg-color); */
+  &:hover {
+    box-shadow: 0 0 25px 15px var(--lg-highlight),
+      inset 1px 1px 5px 1px var(--lg-highlight),
+      inset -1px -1px 5px 1px var(--lg-highlight);
+  }
+}
+@utility glow-container {
+  box-shadow: 0 20px 20px rgba(16, 131, 213, 0.2),
+    0 0 30px rgba(16, 131, 213, 0.2);
+}
+@utility icon-glow {
+  @apply relative;
+}
+@utility glass-background-1 {
+  backdrop-filter: blur(8px);
+  background: var(--lg-bg-color);
+  box-shadow: inset 0px 0px 0px var(--lg-highlight),
+    inset 0px 0px 5px var(--lg-highlight);
+}
+@utility glass-background-2 {
+  @apply relative;
+}
+@utility glass-background-3 {
+  @apply relative;
+}
+@utility glass-edge {
+  box-shadow: inset 1px 1px 0 var(--lg-highlight),
+    inset 0 0 3.5px var(--lg-highlight), inset -1px -1px 0 var(--lg-highlight),
+    inset 0 0 3.5px var(--lg-highlight);
+}
+
 @layer base {
   main {
     @apply w-dvw h-dvh overflow-hidden;
   }
   .system-border {
-    @apply p-2;
+    @apply px-5 py-2 items-center overflow-hidden relative;
     border-width: 30px 0 30px 0;
-    border-color: rgb(68, 144, 210, 0.9);
+    border-color: rgb(68, 144, 210, 0.7);
     border-style: inset;
   }
-  /* .system-border::before {
-    position: absolute;
-    z-index: 4000;
-    content: "";
-    border-width: 10px 0 20px 0;
-    border-color: rgba(10, 49, 83, 0.9);
-    border-style: inset;
-  } */
 
+  .system-screen {
+    @apply h-full p-10 items-center justify-center overflow-hidden bg-amber-50;
+    position: relative;
+    z-index: 1;
+  }
+  .svg-glow {
+    filter: drop-shadow(1px 1px 2px var(--lg-highlight))
+      drop-shadow(0 0 1em var(--lg-highlight))
+      drop-shadow(0 0 0.2em var(--lg-highlight));
+    opacity: 80%;
+  }
+
+  .system-screen::before {
+    @apply h-full p-10 items-center justify-center overflow-hidden bg-amber-50;
+    content: "";
+    position: absolute;
+
+    filter: url("#system-border-filter");
+
+    z-index: -1;
+  }
+  #system-border-panel {
+    @apply stroke-3 stroke-amber-100;
+    fill: "green";
+    stroke: "oklch(0.9 0.3 164)";
+    stroke-width: "0.2";
+  }
+  #screen-finder {
+    @apply h-0;
+  }
+  #controls-finder {
+    @apply opacity-0;
+  }
+  #content-finder {
+    @apply opacity-0;
+  }
   .text-glow {
     @apply text-[#FCFFFD] font-bold;
     text-shadow: 0 0 1em var(--lg-highlight), 0 0 1em var(--lg-highlight),
@@ -105,27 +181,34 @@ body {
         inset -1px -1px 5px 1px var(--lg-highlight);
     }
   }
+  .glow-icon-dock {
+    @apply rounded-xs border-0;
+    box-shadow: 0 0 20px 10px var(--lg-highlight),
+      inset 1px 1px 10px 1px var(--lg-highlight),
+      inset -1px -1px 10px 1px var(--lg-highlight);
+    backdrop-filter: blur(20px);
+    background: var(--lg-bg-color);
+    &:hover {
+      box-shadow: 0 0 25px 15px var(--lg-highlight),
+        inset 1px 1px 5px 1px var(--lg-highlight),
+        inset -1px -1px 5px 1px var(--lg-highlight);
+    }
+  }
 
   nav {
-    @apply relative flex justify-between items-center select-none font-bold z-4000 text-white;
-    backdrop-filter: blur(8px);
-    background: var(--lg-bg-color);
-    box-shadow: inset 0px 0px 0px var(--lg-highlight),
-      inset 0px 0px 5px var(--lg-highlight);
+    @apply relative flex justify-between items-center select-none  z-4000   glass-background-1 p-1 3xl:p-2 px-6 3xl:px-8 text-glow 3xl:text-xl;
     div {
       @apply flex items-center max-sm:w-full max-sm:justify-center gap-5;
+
+      img {
+        @apply glow size-4 3xl:size-6;
+      }
 
       &:last-child {
         @apply max-sm:hidden;
       }
     }
 
-    .svg-glow {
-      filter: drop-shadow(1px 1px 2px var(--lg-highlight))
-        drop-shadow(0 0 1em var(--lg-highlight))
-        drop-shadow(0 0 0.2em var(--lg-highlight));
-      opacity: 80%;
-    }
     /* svg {
       filter: drop-shadow(2px 2px 2px rgba(16, 146, 190, 0.75));
     } */
@@ -139,7 +222,7 @@ body {
     }
 
     time {
-      @apply font-medium text-white;
+      @apply font-medium text-white text-glow 3xl:text-xl;
     }
   }
 }
@@ -168,16 +251,10 @@ body {
   }
 
   #dock {
-    @apply absolute bottom-5 left-1/2 -translate-x-1/2  z-4000 select-none max-sm:hidden rounded-3xl 3xl:rounded-full;
-    box-shadow: 0 20px 20px rgba(16, 131, 213, 0.2),
-      0 0 30px rgba(16, 131, 213, 0.2);
+    @apply absolute bottom-5 left-1/2 -translate-x-1/2  z-4000 select-none max-sm:hidden rounded-3xl 3xl:rounded-full glow-container;
 
     .dock-container {
-      @apply justify-between rounded-3xl 3xl:rounded-4xl px-5 p-3  3xl:px-10 3xl:p-5 flex items-end  3xl:space-x-10;
-      backdrop-filter: blur(20px);
-      background: var(--lg-bg-color);
-      box-shadow: inset 1px 1px 0 var(--lg-highlight),
-        inset 0 0 3.5px var(--lg-highlight);
+      @apply justify-between rounded-3xl 3xl:rounded-4xl px-5 p-3  3xl:px-10 3xl:p-5 flex items-end  glass-background-1;
     }
 
     .tooltip {
@@ -185,12 +262,10 @@ body {
     }
 
     .dock-icon {
-      @apply size-15 3xl:size-20  cursor-pointer relative z-4001 rounded-3xl;
+      @apply size-15 3xl:size-20  cursor-pointer relative z-4001 rounded-3xl glass-edge;
 
       img {
-        @apply object-cover object-center rounded-2xl;
-        opacity: 85%;
-        backdrop-filter: blur(8px);
+        @apply object-cover object-center rounded-2xl cursor-pointer glow;
       }
     }
   }
@@ -536,18 +611,16 @@ body {
   }
 
   #finder {
-    @apply absolute w-2xl h-fit -top-80 left-60 3xl:w-3xl  3xl:-top-100 3xl:left-80 shadow-2xl overflow-hidden rounded-xl;
+    @apply absolute   -top-60 left-60   3xl:-top-100 3xl:left-80;
 
     .solo-levelling-border {
-      @apply h-full;
+      @apply h-full p-10 self-center ml-5 overflow-hidden;
       position: relative;
       z-index: 1;
-      padding: 20px;
     }
 
     .solo-levelling-border::before {
-      @apply h-full bg-[url(/images/solo-levelling-background.png)] bg-contain
-        bg-blend-darken;
+      @apply h-full overflow-hidden;
       content: "";
       position: absolute;
       inset: -5px;
@@ -559,12 +632,14 @@ body {
       pointer-events: none;
     }
     .sidebar {
-      @apply h-full w-48 border-r flex flex-col p-5 space-y-3;
-      box-shadow: 1px 1px 0 var(--lg-highlight), 0 0 3.5px var(--lg-highlight),
+      @apply h-full w-48  flex flex-col p-5 space-y-3;
+      border-width: 1px;
+      border-color: var(--lg-border);
+      /* box-shadow: 1px 1px 0 var(--lg-highlight), 0 0 3.5px var(--lg-highlight),
         -1px -1px 0 var(--lg-highlight), -1px -1px 3.5px var(--lg-highlight),
         inset 1px 1px 0 var(--lg-highlight), inset 0 0 3.5px var(--lg-highlight),
         inset -1px -1px 0 var(--lg-highlight),
-        inset -1px -1px 3.5px var(--lg-highlight);
+        inset -1px -1px 3.5px var(--lg-highlight); */
       h3 {
         @apply text-xs font-medium text-gray-400 mb-1;
       }
@@ -588,16 +663,18 @@ body {
 
     .content {
       @apply flex-1 p-8  max-w-2xl;
+      border-width: 1px;
+      border-color: var(--lg-border);
       /* backdrop-filter: blur(100px); */
       /* background: rgba(8, 60, 116, 0.4); */
       /* box-shadow: inset 1px 1px 0 var(--lg-highlight),
         inset 0 0 3.5px var(--lg-highlight); */
 
-      box-shadow: 1px 1px 0 var(--lg-highlight), 0 0 3.5px var(--lg-highlight),
+      /* box-shadow: 1px 1px 0 var(--lg-highlight), 0 0 3.5px var(--lg-highlight),
         -1px -1px 0 var(--lg-highlight), -1px -1px 3.5px var(--lg-highlight),
         inset 1px 1px 0 var(--lg-highlight), inset 0 0 3.5px var(--lg-highlight),
         inset -1px -1px 0 var(--lg-highlight),
-        inset -1px -1px 3.5px var(--lg-highlight);
+        inset -1px -1px 3.5px var(--lg-highlight); */
 
       li {
         @apply flex items-center flex-col gap-3 cursor-pointer;

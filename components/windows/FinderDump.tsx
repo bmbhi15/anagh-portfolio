@@ -6,15 +6,10 @@ import { ROOT_LOCATION, WORK_LOCATION, Location } from "@/lib/constants";
 import { useLocationStore } from "@/lib/zustand/locationStore";
 import { useWindowStore } from "@/lib/zustand/windowStore";
 import Image from "next/image";
-import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
 
-const Finder = ({ timeline }: GSAPTimeline) => {
+const Finder = () => {
   const { currentLocation, setLocation } = useLocationStore();
   const { openWindow } = useWindowStore();
-  const contentRef = useRef<HTMLDivElement>(null);
-  const screenRef = useRef<HTMLDivElement>(null);
-  const controlsRef = useRef<HTMLDivElement>(null);
 
   const renderList = (title: string, folderList: Location[]) => (
     <div>
@@ -76,7 +71,7 @@ const Finder = ({ timeline }: GSAPTimeline) => {
         {childFolders.map((item) => (
           <li
             key={item.name}
-            className="self-center py-2 
+            className="self-center py-2 glass-edge
       "
           >
             <Image
@@ -85,7 +80,7 @@ const Finder = ({ timeline }: GSAPTimeline) => {
               onClick={() => handleOpenFolder(item)}
               width={200}
               height={200}
-              className="h-12 w-12 glow-icon"
+              className="glow-icon"
             />
             <p className="text-glow">{item.name}</p>
           </li>
@@ -93,115 +88,35 @@ const Finder = ({ timeline }: GSAPTimeline) => {
       </ul>
     );
   };
-
-  useGSAP(() => {
-    if (!timeline) return;
-    timeline
-      .to(screenRef.current, {
-        height: 400,
-        duration: 0.2,
-        ease: "power1.in.out",
-        delay: 0.1,
-      })
-      .to(contentRef.current, {
-        opacity: 100,
-        duration: 2,
-      })
-      .to(controlsRef.current, {
-        opacity: 100,
-        duration: 2,
-        delay: -2,
-      });
-  }, [timeline]);
   return (
     <>
-      <div id="finder" className="absolute opacity-100">
-        <svg
-          width="100%"
-          viewBox="0 0 100 5"
-          className="absolute -top-8  svg-glow
-"
-        >
-          <polygon
-            className="fill-[#1463B3] stroke-[0.3] stroke-[#55C9FD] opacity-80
-            glass-edge
-            "
-            points="
-      0,0
-      100,0
-      96,3
-      20,3
-      15,1
-      0,1
-      0,0
-    "
-          />
-        </svg>
-        <svg
-          width="100%"
-          viewBox="0 0 100 5"
-          className="absolute -bottom-10 svg-glow"
-        >
-          <polygon
-            className="fill-[#1463B3] stroke-[0.3] stroke-[#55C9FD] opacity-80
-            glass-edge
-            "
-            points="
-      0,0
-      6,0
-      7.7 , 1
-      14.3 , 1
-      16 , 0
-      100,0
-      100,2.5
-      20,2.5
-      7.5,2.5
-      5 , 1
-      0.75, 1
-      0,0
-    "
-          />
-        </svg>
-        <div className="h-fit w-fit py-3 px-10">
-          <div
-            id="screen-finder"
-            ref={screenRef}
-            className=" w-200 relative backdrop-blur-sm py-5 px-20"
-          >
-            <Image
-              alt="ui-background"
-              src="/images/solo-levelling-background.png"
-              quality={100}
-              fill
-              sizes="100vw"
-              style={{
-                objectFit: "cover",
-              }}
-              className="absolute -z-2 opacity-85 "
-            />
-            <div
-              id="controls-finder"
-              ref={controlsRef}
-              className="flex justify-between mb-2 "
-            >
-              <WindowControls windowId={WindowId.Finder} />
-              <p className="text-glow">{WindowId.Finder}</p>
+      <div id={WindowId.Finder} className="system-border">
+        <Image
+          alt="Mountains"
+          src="/images/solo-levelling-background.png"
+          quality={100}
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: "cover",
+          }}
+          className="absolute -z-2 opacity-90"
+        />
+        <div className="solo-levelling-border  ">
+          <div id="" className="flex justify-between mb-2">
+            <WindowControls windowId={WindowId.Finder} />
+            <p className="text-glow">{WindowId.Finder}</p>
+          </div>
+          <div className="flex flex-row">
+            <div className="sidebar">
+              {renderList("Favourites", ROOT_LOCATION)}
+              {WORK_LOCATION.children ? (
+                renderList("Projects", WORK_LOCATION.children)
+              ) : (
+                <></>
+              )}
             </div>
-            <div
-              ref={contentRef}
-              id="content-finder"
-              className="flex flex-row bg-[rgba(0,0,0,0.5)]"
-            >
-              <div className="sidebar">
-                {renderList("Favourites", ROOT_LOCATION)}
-                {WORK_LOCATION.children ? (
-                  renderList("Projects", WORK_LOCATION.children)
-                ) : (
-                  <></>
-                )}
-              </div>
-              <div className="content">{renderFolders(currentLocation)}</div>
-            </div>
+            <div className="content">{renderFolders(currentLocation)}</div>
           </div>
         </div>
       </div>
