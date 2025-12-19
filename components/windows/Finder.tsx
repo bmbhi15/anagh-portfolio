@@ -9,11 +9,12 @@ import Image from "next/image";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 
-const Finder = ({ tl }: GSAPTimeline) => {
+const Finder = ({ timeline }: GSAPTimeline) => {
   const { currentLocation, setLocation } = useLocationStore();
   const { openWindow } = useWindowStore();
   const contentRef = useRef<HTMLDivElement>(null);
   const screenRef = useRef<HTMLDivElement>(null);
+  const controlsRef = useRef<HTMLDivElement>(null);
 
   const renderList = (title: string, folderList: Location[]) => (
     <div>
@@ -94,18 +95,24 @@ const Finder = ({ tl }: GSAPTimeline) => {
   };
 
   useGSAP(() => {
-    console.log("This is the timeline object that was passed: ");
-    console.log(tl);
-    if (!tl) return;
-    tl.to(screenRef.current, {
-      height: "200px",
-      duration: 1,
-      ease: "elastic.inOut",
-    }).to(contentRef.current, {
-      opacity: 0,
-      duration: 1,
-    });
-  }, []);
+    if (!timeline) return;
+    timeline
+      .to(screenRef.current, {
+        height: 400,
+        duration: 0.2,
+        ease: "power1.in.out",
+        delay: 0.1,
+      })
+      .to(contentRef.current, {
+        opacity: 100,
+        duration: 2,
+      })
+      .to(controlsRef.current, {
+        opacity: 100,
+        duration: 2,
+        delay: -2,
+      });
+  }, [timeline]);
   return (
     <>
       <div id="finder" className="absolute opacity-100">
@@ -159,7 +166,7 @@ const Finder = ({ tl }: GSAPTimeline) => {
           <div
             id="screen-finder"
             ref={screenRef}
-            className="h-40 w-200 relative backdrop-blur-sm py-5 px-20"
+            className=" w-200 relative backdrop-blur-sm py-5 px-20"
           >
             <Image
               alt="ui-background"
@@ -174,7 +181,8 @@ const Finder = ({ tl }: GSAPTimeline) => {
             />
             <div
               id="controls-finder"
-              className="flex justify-between mb-2 opacity-0"
+              ref={controlsRef}
+              className="flex justify-between mb-2 "
             >
               <WindowControls windowId={WindowId.Finder} />
               <p className="text-glow">{WindowId.Finder}</p>
@@ -182,7 +190,7 @@ const Finder = ({ tl }: GSAPTimeline) => {
             <div
               ref={contentRef}
               id="content-finder"
-              className="flex flex-row bg-[rgba(0,0,0,0.5)] opacity-0"
+              className="flex flex-row bg-[rgba(0,0,0,0.5)]"
             >
               <div className="sidebar">
                 {renderList("Favourites", ROOT_LOCATION)}

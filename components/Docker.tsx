@@ -1,6 +1,5 @@
 "use client";
-import { useMediaQuery } from "react-responsive";
-import { RefObject, useRef, useEffect } from "react";
+import { RefObject, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { dockApps, WindowId } from "@/lib/constants";
@@ -51,19 +50,15 @@ const addEventListenerToDock = (
     const { left } = containerRef.current.getBoundingClientRect();
     const iconElements = containerRef.current?.querySelectorAll("button");
     const screenWidth = typeof window !== "undefined" ? window.innerWidth : 0;
-    const center_x = e.offsetX;
     if (!iconElements) return;
     iconElements.forEach((elem) => {
       const { max_h, min_h } = HEIGHT;
-      const { max_x, min_x } = X_OFFSET;
       const { max_s, min_s } = SCALE;
       const { intensity, sign } = calculateTransformIntensity(e, left, elem);
       const idSelector = `#${elem.id}`;
       const height_factor = screenWidth / DEFAULT_WIDTH;
       gsap.to(idSelector, {
         y: min_h + (max_h * height_factor - min_h) * intensity,
-        // x: min_x + (max_x - min_h) * intensity * sign,
-        // x: `+=${-sign * x_offset}`,
         scale: min_s + (max_s - min_s) * intensity,
         duration: 0.2,
       });
@@ -79,8 +74,6 @@ const addEventListenerToDock = (
       const idSelector = `#${elem.id}`;
       gsap.to(idSelector, {
         y: 0,
-        // x: 0,
-        // x: "-=20",
         scale: min_s,
         duration: 0.3,
       });
@@ -97,13 +90,9 @@ const addEventListenerToDock = (
 };
 
 const Docker = () => {
-  const screenWidth = typeof window !== "undefined" ? window.innerWidth : 0;
   const containerRef = useRef<HTMLUListElement>(null);
   const { windows, openWindow } = useWindowStore();
-  // INSERT_YOUR_CODE
-  useEffect(() => {
-    console.log("Screen width:", screenWidth);
-  }, [screenWidth]);
+
   useGSAP(() => {
     const removeListener = addEventListenerToDock(containerRef);
 
@@ -118,14 +107,11 @@ const Docker = () => {
   };
 
   return (
-    <section id="dock" className="">
+    <section id="dock">
       <div className="dock-container">
-        <ul
-          ref={containerRef}
-          className="flex flex-row space-x-6 3xl:space-x-10"
-        >
+        <ul ref={containerRef} className="flex space-x-6 3xl:space-x-10">
           {dockApps.map((app) => (
-            <li key={app.id} className="dock-icon glass-edge">
+            <li key={app.id} className="dock-icon ">
               <button
                 data-tooltip-id="dock-tooltip"
                 data-tooltip-content={app.name}
@@ -139,7 +125,6 @@ const Docker = () => {
                 <Image
                   src={`/images/${app.icon}`}
                   alt={app.name}
-                  className="cursor-pointer glow-icon"
                   height={512}
                   width={512}
                 />
