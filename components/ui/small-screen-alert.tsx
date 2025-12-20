@@ -15,7 +15,6 @@ import { cn } from "@/lib/utils";
 const SmallScreenAlert = () => {
   const dialogRef = useRef<HTMLDivElement>(null);
   const isMobile = useMediaQuery({ query: "(max-width: 620px)" });
-  console.log("Is this mobile ", isMobile);
   //   useGSAP(() => {
   //     gsap.to(dialogRef.current, {
   //       opacity: 100,

@@ -101,9 +101,6 @@ const Docker = () => {
   const containerRef = useRef<HTMLUListElement>(null);
   const { windows, openWindow } = useWindowStore();
   // INSERT_YOUR_CODE
-  useEffect(() => {
-    console.log("Screen width:", screenWidth);
-  }, [screenWidth]);
   useGSAP(() => {
     const removeListener = addEventListenerToDock(containerRef);
 
