@@ -60,7 +60,6 @@ const calculateIntensity = (
   const distance = mouseX - elemX;
   const decay_low = 2000;
   const decay_high = 7000;
-  console.log("This is my decay factor", decay_factor);
   const intensity = Math.exp(-(distance ** 2) / (8 * 1000));
 
   return intensity;
