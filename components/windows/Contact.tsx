@@ -3,6 +3,7 @@ import { socials } from "@/lib/constants";
 import { withAppWindow } from "../hoc/withAppWindow";
 import { WindowId } from "@/lib/constants";
 import WindowControls from "../ui/WindowControls";
+import Image from "next/image";
 const Contact = () => {
   return (
     <div id={WindowId.Contact}>
@@ -38,7 +39,13 @@ const Contact = () => {
                 style={{ backgroundColor: color }}
                 className="relative z-10 flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center shadow-md group-hover:bg-white/20 group-hover:backdrop-blur-sm transition-colors duration-300"
               >
-                <img src={icon} alt={text} className="w-4 h-4" />
+                <Image
+                  src={icon}
+                  alt={text}
+                  className="w-4 h-4"
+                  height={30}
+                  width={30}
+                />
               </div>
 
               {/* Text Content */}
