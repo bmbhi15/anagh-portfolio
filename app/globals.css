@@ -11,10 +11,10 @@ body {
   width: 100dvw;
   overflow: hidden;
   height: 100dvh;
-  background-image: url("/images/wallpaper-5.png");
+  /* background-image: url("/images/wallpaper-5.png");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center; */
   --lg-bg-color: rgba(8, 60, 116, 0.2);
   --lg-highlight: rgba(68, 144, 210, 0.902);
 }
