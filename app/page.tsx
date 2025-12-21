@@ -30,6 +30,7 @@ function Home() {
         <Image
           alt="solo-levelling-wallpaper"
           src={"/images/wallpaper-5.png"}
+          priority
           blurDataURL={"/images/wallpaper-5-lqip.jpg"}
           placeholder="blur"
           quality={100}
