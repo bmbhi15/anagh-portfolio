@@ -6,16 +6,10 @@ import { ROOT_LOCATION, WORK_LOCATION, Location } from "@/lib/constants";
 import { useLocationStore } from "@/lib/zustand/locationStore";
 import { useWindowStore } from "@/lib/zustand/windowStore";
 import Image from "next/image";
-import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
 
-const Finder = ({ ...props }) => {
-  const timeline = props.timeline;
+const Finder = () => {
   const { currentLocation, setLocation } = useLocationStore();
   const { openWindow } = useWindowStore();
-  const contentRef = useRef<HTMLDivElement>(null);
-  const screenRef = useRef<HTMLDivElement>(null);
-  const controlsRef = useRef<HTMLDivElement>(null);
 
   const renderList = (title: string, folderList: Location[]) => (
     <div>
@@ -49,6 +43,7 @@ const Finder = ({ ...props }) => {
     const childFolders = folderList.children;
 
     const handleOpenFolder = (item: Location) => {
+      console.log(item);
       if (item.kind === "folder") setLocation(item);
 
       if (item.kind === "file") {
@@ -76,7 +71,7 @@ const Finder = ({ ...props }) => {
         {childFolders.map((item) => (
           <li
             key={item.name}
-            className="self-center py-2 
+            className="self-center py-2 glass-edge
       "
           >
             <Image
@@ -85,7 +80,7 @@ const Finder = ({ ...props }) => {
               onClick={() => handleOpenFolder(item)}
               width={200}
               height={200}
-              className="h-12 w-12 glow-icon"
+              className="glow-icon"
             />
             <p className="text-glow">{item.name}</p>
           </li>
@@ -93,55 +88,63 @@ const Finder = ({ ...props }) => {
       </ul>
     );
   };
-
-  useGSAP(() => {
-    if (!timeline) return;
-    timeline
-      .to(screenRef.current, {
-        height: 400,
-        duration: 0.2,
-        ease: "power1.in.out",
-        delay: 0.1,
-      })
-      .to(contentRef.current, {
-        opacity: 100,
-        duration: 2,
-      })
-      .to(controlsRef.current, {
-        opacity: 100,
-        duration: 2,
-        delay: -2,
-      });
-  }, [timeline]);
   return (
-    <div ref={screenRef} className="window-screen">
-      <Image
-        alt="ui-background"
-        src="/images/solo-levelling-background.png"
-        quality={100}
-        fill
-        sizes="100vw"
-        style={{
-          objectFit: "cover",
-        }}
-        className="absolute -z-2 opacity-85 "
-      />
-      <div ref={controlsRef} className="flex justify-between mb-2 ">
-        <WindowControls windowId={WindowId.Finder} />
-        <p className="text-glow">{WindowId.Finder}</p>
-      </div>
-      <div ref={contentRef} className="flex flex-row bg-[rgba(0,0,0,0.5)]">
-        <div className="sidebar">
-          {renderList("Favourites", ROOT_LOCATION)}
-          {WORK_LOCATION.children ? (
-            renderList("Projects", WORK_LOCATION.children)
-          ) : (
-            <></>
-          )}
+    <>
+      <div id={WindowId.Finder} className="system-border">
+        <Image
+          alt="Mountains"
+          src="/images/solo-levelling-background.png"
+          quality={100}
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: "cover",
+          }}
+          className="absolute -z-2 opacity-90"
+        />
+        <div className="solo-levelling-border  ">
+          <div id="" className="flex justify-between mb-2">
+            <WindowControls windowId={WindowId.Finder} />
+            <p className="text-glow">{WindowId.Finder}</p>
+          </div>
+          <div className="flex flex-row">
+            <div className="sidebar">
+              {renderList("Favourites", ROOT_LOCATION)}
+              {WORK_LOCATION.children ? (
+                renderList("Projects", WORK_LOCATION.children)
+              ) : (
+                <></>
+              )}
+            </div>
+            <div className="content">{renderFolders(currentLocation)}</div>
+          </div>
         </div>
-        <div className="content">{renderFolders(currentLocation)}</div>
       </div>
-    </div>
+      <svg>
+        <defs>
+          <filter
+            id="system-border-filter"
+            x="-10%"
+            y="-20%"
+            width="200%"
+            height="200%"
+          >
+            <feTurbulence
+              baseFrequency="0.4 0.01"
+              result="NOISE"
+              numOctaves="2"
+            />
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="NOISE"
+              scale="-35"
+              xChannelSelector="R"
+              yChannelSelector="R"
+            ></feDisplacementMap>
+          </filter>
+        </defs>
+      </svg>
+    </>
   );
 };
 const FinderWindow = withAppWindow(Finder, WindowId.Finder);
