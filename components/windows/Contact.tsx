@@ -3,14 +3,40 @@ import { socials } from "@/lib/constants";
 import { withAppWindow } from "../hoc/withAppWindow";
 import { WindowId } from "@/lib/constants";
 import WindowControls from "../ui/WindowControls";
-const Contact = () => {
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+
+const Contact = ({ ...props }) => {
+  const timeline = props.timeline;
+  const contentRef = useRef<HTMLDivElement>(null);
+  const screenRef = useRef<HTMLDivElement>(null);
+  const controlsRef = useRef<HTMLDivElement>(null);
+  useGSAP(() => {
+    if (!timeline) return;
+    timeline
+      .to(screenRef.current, {
+        height: 400,
+        duration: 0.2,
+        ease: "power1.in.out",
+        delay: 0.1,
+      })
+      .to(contentRef.current, {
+        opacity: 100,
+        duration: 2,
+      })
+      .to(controlsRef.current, {
+        opacity: 100,
+        duration: 2,
+        delay: -2,
+      });
+  }, [timeline]);
   return (
-    <div id={WindowId.Contact}>
-      <div id="window-header">
+    <div ref={screenRef} className="window-screen">
+      <div ref={controlsRef} className="flex justify-between mb-2">
         <WindowControls windowId={WindowId.Contact} />
         <p className="text-glow">{WindowId.Contact}</p>
       </div>
-      <section className="content">
+      <section ref={contentRef} className="content">
         <div className="text-center mb-8 space-y-2 pt-5 ">
           <div className="inline-flex items-center justify-center w-14 h-14 bg-zinc-950 opacity-60 shadow-lg rounded-full mb-2 text-3xl animate-bounce-slow">
             👋

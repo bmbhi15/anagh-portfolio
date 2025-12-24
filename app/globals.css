@@ -146,9 +146,6 @@ body {
     stroke: "oklch(0.9 0.3 164)";
     stroke-width: "0.2";
   }
-  #screen-finder {
-    @apply h-0;
-  }
   #controls-finder {
     @apply opacity-0;
   }
@@ -287,11 +284,7 @@ body {
   }
 
   #window-header {
-    @apply flex items-center justify-between px-4 py-3 rounded-t-lg border-b select-none text-sm text-white;
-    backdrop-filter: blur(200px);
-    background: rgba(8, 60, 116, 0.5);
-    box-shadow: inset 1px 1px 0 var(--lg-highlight),
-      inset 0 0 3.5px var(--lg-highlight);
+    @apply flex  justify-between mb-2;
   }
 
   #safari {
@@ -385,9 +378,19 @@ body {
   } */
 
   #terminal {
-    @apply absolute w-2xl -top-80 left-60 3xl:w-3xl  3xl:-top-100 3xl:left-80 h-95 bg-zinc-950 text-zinc-100 opacity-95 
-      overflow-hidden flex flex-col
+    @apply absolute -top-80 left-60   3xl:-top-90 3xl:left-80;
+
+    .window-screen {
+      @apply relative h-0 w-2xl 3xl:w-3xl backdrop-blur-sm  rounded-xl overflow-hidden py-5 px-20  bg-zinc-950 text-zinc-100 opacity-95 
+       flex flex-col
       font-mono text-xs sm:text-sm;
+      > div {
+        opacity: 0;
+      }
+      > section {
+        opacity: 0;
+      }
+    }
 
     header {
       @apply rounded-4xl;
@@ -500,8 +503,16 @@ body {
     }
   }
   #contact {
-    @apply absolute w-2xl -top-80 left-60 3xl:w-3xl  3xl:-top-100 3xl:left-80 h-100  rounded-xl overflow-hidden;
-
+    @apply absolute  -top-80 left-60   3xl:-top-90 3xl:left-80;
+    .window-screen {
+      @apply relative h-0 w-2xl 3xl:w-3xl backdrop-blur-sm  rounded-xl overflow-hidden py-5 px-20;
+      > div {
+        opacity: 0;
+      }
+      > section {
+        opacity: 0;
+      }
+    }
     .content {
       @apply h-full;
       backdrop-filter: blur(200px);
@@ -535,7 +546,7 @@ body {
   }
 
   #photos {
-    @apply max-w-3xl absolute -top-80 right-60  3xl:-top-100 3xl:right-80 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply max-w-3xl absolute -top-80 right-60  3xl:-top-90 3xl:right-80 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
     .sidebar {
       @apply w-3/12 flex-none flex flex-col p-5;
@@ -601,9 +612,20 @@ body {
   }
 
   #resume {
-    @apply w-fit h-fit absolute -top-80 left-170   3xl:-top-100 3xl:left-300 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply absolute -top-80 left-170   3xl:-top-90 3xl:left-300 bg-white shadow-2xl drop-shadow-2xl;
+
+    .window-screen {
+      @apply flex flex-col relative h-0 w-2xl 3xl:w-3xl  py-5 px-20 backdrop-blur-sm bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+      > div {
+        opacity: 0;
+      }
+      > section {
+        opacity: 0;
+      }
+    }
 
     #window-header {
+      @apply flex justify-between mb-2;
       h2 {
         @apply font-bold text-sm text-center flex-1;
       }
@@ -611,8 +633,13 @@ body {
   }
 
   #finder {
-    @apply absolute   -top-60 left-60   3xl:-top-100 3xl:left-80;
-
+    @apply absolute  -top-60 left-60   3xl:-top-90 3xl:left-80;
+    .window-screen {
+      @apply relative h-0 w-200 backdrop-blur-sm py-5 px-20;
+      > div {
+        opacity: 0;
+      }
+    }
     .solo-levelling-border {
       @apply h-full p-10 self-center ml-5 overflow-hidden;
       position: relative;
@@ -692,20 +719,41 @@ body {
   }
 
   #txtfile {
-    @apply w-1/4 3xl:w-full  absolute -top-80 left-170   3xl:-top-100 3xl:left-300 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply absolute -top-80 left-170   3xl:-top-90 3xl:left-300;
+
+    .window-screen {
+      @apply flex flex-col relative h-0 w-200 backdrop-blur-3xl shadow-2xl drop-shadow-2xl  rounded-xl overflow-hidden border border-white/40  py-5 px-20;
+      > div {
+        opacity: 0;
+      }
+      > section {
+        opacity: 0;
+      }
+    }
   }
 
   #imgfile {
-    @apply absolute -top-80 left-230   3xl:-top-100 3xl:left-350 shadow-2xl  rounded-xl overflow-hidden;
+    @apply absolute -top-80 left-230   3xl:-top-90 3xl:left-350;
+
+    .window-screen {
+      @apply relative h-0  shadow-2xl rounded-xl overflow-hidden py-5 px-20;
+      > div {
+        opacity: 0;
+      }
+      > section {
+        opacity: 0;
+      }
+    }
 
     #window-header {
+      @apply flex justify-between mb-2;
       p {
         @apply font-bold text-[#5f6266];
       }
     }
 
     .preview {
-      @apply p-2 bg-black max-w-[50vw] min-w-[25vw] min-h-[40vh] max-h-[70vh] items-center justify-center;
+      @apply p-2 max-w-[50vw] min-w-[25vw] min-h-[40vh] max-h-[70vh] items-center justify-center;
       img {
         @apply w-full h-fit self-center;
       }
