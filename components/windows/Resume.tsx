@@ -9,7 +9,8 @@ import PdfViewer from "../utils/PdfViewer";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 
-const Resume = ({ timeline }: GSAPTimeline) => {
+const Resume = ({ ...props }) => {
+  const timeline = props.timeline;
   const contentRef = useRef<HTMLDivElement>(null);
   const screenRef = useRef<HTMLDivElement>(null);
   const controlsRef = useRef<HTMLDivElement>(null);

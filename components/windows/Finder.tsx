@@ -9,7 +9,8 @@ import Image from "next/image";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 
-const Finder = ({ timeline }: GSAPTimeline) => {
+const Finder = ({ ...props }) => {
+  const timeline = props.timeline;
   const { currentLocation, setLocation } = useLocationStore();
   const { openWindow } = useWindowStore();
   const contentRef = useRef<HTMLDivElement>(null);

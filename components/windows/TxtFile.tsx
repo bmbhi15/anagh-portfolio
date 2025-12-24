@@ -6,7 +6,8 @@ import { useWindowStore } from "@/lib/zustand/windowStore";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 
-const TxtFile = ({ timeline }: GSAPTimeline) => {
+const TxtFile = ({ ...props }) => {
+  const timeline = props.timeline;
   const contentRef = useRef<HTMLDivElement>(null);
   const screenRef = useRef<HTMLDivElement>(null);
   const controlsRef = useRef<HTMLDivElement>(null);

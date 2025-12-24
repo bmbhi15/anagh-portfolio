@@ -11,6 +11,7 @@ import FinderWindow from "@/components/windows/Finder";
 import TxtFileWindow from "@/components/windows/TxtFile";
 import ImgFileWindow from "@/components/windows/ImgFile";
 import { useWebgl } from "@/lib/hooks/useWebgl";
+
 // import { useState, useEffect, useRef } from "react";
 // import Image from "next/image";
 

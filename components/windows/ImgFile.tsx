@@ -8,7 +8,8 @@ import Image from "next/image";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 
-const ImgFile = ({ timeline }: GSAPTimeline) => {
+const ImgFile = ({ ...props }) => {
+  const timeline = props.timeline;
   const contentRef = useRef<HTMLDivElement>(null);
   const screenRef = useRef<HTMLDivElement>(null);
   const controlsRef = useRef<HTMLDivElement>(null);

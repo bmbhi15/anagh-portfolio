@@ -5,7 +5,8 @@ import { WindowId } from "@/lib/constants";
 import WindowControls from "../ui/WindowControls";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
-const Terminal = ({ timeline }: GSAPTimeline) => {
+const Terminal = ({ ...props }) => {
+  const timeline = props.timeline;
   const contentRef = useRef<HTMLDivElement>(null);
   const screenRef = useRef<HTMLDivElement>(null);
   const controlsRef = useRef<HTMLDivElement>(null);

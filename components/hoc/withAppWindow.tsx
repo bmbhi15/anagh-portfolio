@@ -9,8 +9,12 @@ import { useEffect, useState } from "react";
 
 gsap.registerPlugin(Draggable);
 
+type InjectedProps = {
+  timeline: GSAPTimeline | undefined;
+};
+
 export function withAppWindow<P extends object>(
-  WrappedComponent: React.ComponentType<P>,
+  WrappedComponent: React.ComponentType<P & InjectedProps>,
   windowId: WindowId
 ): React.FC<P> {
   const ComponentWithWindow: React.FC<P> = (props) => {
