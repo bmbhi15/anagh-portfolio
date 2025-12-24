@@ -6,20 +6,45 @@ import { withAppWindow } from "../hoc/withAppWindow";
 import { WindowId } from "@/lib/constants";
 import WindowControls from "../ui/WindowControls";
 import PdfViewer from "../utils/PdfViewer";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
 
-const Resume = () => {
+const Resume = ({ ...props }) => {
+  const timeline = props.timeline;
+  const contentRef = useRef<HTMLDivElement>(null);
+  const screenRef = useRef<HTMLDivElement>(null);
+  const controlsRef = useRef<HTMLDivElement>(null);
+  useGSAP(() => {
+    if (!timeline) return;
+    timeline
+      .to(screenRef.current, {
+        height: 600,
+        duration: 0.2,
+        ease: "power1.in.out",
+        delay: 0.1,
+      })
+      .to(contentRef.current, {
+        opacity: 100,
+        duration: 2,
+      })
+      .to(controlsRef.current, {
+        opacity: 100,
+        duration: 2,
+        delay: -2,
+      });
+  }, [timeline]);
   return (
-    <div
-      id={WindowId.Resume}
-      className="h-[500px] w-fit shadow-2xl rounded-xl overflow-hidden  flex flex-col "
-    >
-      <div id="window-header">
-        <div className="flex items-center gap-6 w-1/4">
+    <div ref={screenRef} className="window-screen">
+      <div ref={controlsRef} id="window-header">
+        <div className="flex items-center gap-6 w-full">
           <WindowControls windowId={WindowId.Resume} />
           <div className="flex items-center gap-1 text-glow">Resume.pdf</div>
         </div>
       </div>
-      <section className="flex-1 overflow-y-auto scroll-smooth">
+      <section
+        ref={contentRef}
+        className="flex-1 overflow-y-auto scroll-smooth"
+      >
         <header className="flex items-center justify-between h-14 px-4 bg-[#323639] text-gray-100 shadow-md sticky top-0 z-50 font-sans">
           <div className="flex items-center gap-3">
             <FileText size={18} className="text-gray-400" />
