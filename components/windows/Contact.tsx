@@ -5,6 +5,7 @@ import { WindowId } from "@/lib/constants";
 import WindowControls from "../ui/WindowControls";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
+import Image from "next/image";
 
 const Contact = ({ ...props }) => {
   const timeline = props.timeline;
@@ -30,6 +31,7 @@ const Contact = ({ ...props }) => {
         delay: -2,
       });
   }, [timeline]);
+
   return (
     <div ref={screenRef} className="window-screen">
       <div ref={controlsRef} className="flex justify-between mb-2">
@@ -64,7 +66,13 @@ const Contact = ({ ...props }) => {
                 style={{ backgroundColor: color }}
                 className="relative z-10 flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center shadow-md group-hover:bg-white/20 group-hover:backdrop-blur-sm transition-colors duration-300"
               >
-                <img src={icon} alt={text} className="w-4 h-4" />
+                <Image
+                  src={icon}
+                  alt={text}
+                  className="w-4 h-4"
+                  height={30}
+                  width={30}
+                />
               </div>
 
               {/* Text Content */}

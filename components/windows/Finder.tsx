@@ -49,7 +49,6 @@ const Finder = ({ ...props }) => {
     const childFolders = folderList.children;
 
     const handleOpenFolder = (item: Location) => {
-      console.log(item);
       if (item.kind === "folder") setLocation(item);
 
       if (item.kind === "file") {

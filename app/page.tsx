@@ -11,12 +11,14 @@ import FinderWindow from "@/components/windows/Finder";
 import TxtFileWindow from "@/components/windows/TxtFile";
 import ImgFileWindow from "@/components/windows/ImgFile";
 import { useWebgl } from "@/lib/hooks/useWebgl";
+import SmallScreenAlert from "@/components/ui/small-screen-alert";
 
 // import { useState, useEffect, useRef } from "react";
-// import Image from "next/image";
+import Image from "next/image";
 
 function Home() {
   useWebgl();
+
   // const [isVideoLoaded, setVideoLoaded] = useState<boolean>(false);
   // const videoRef = useRef<HTMLVideoElement>(null);
   // useEffect(() => {}, [isVideoLoaded]);
@@ -25,6 +27,18 @@ function Home() {
       {/* {!isVideoLoaded ? <p>Loading ...</p> : <></>} */}
       <main id="main-container">
         <NavBar />
+        <Image
+          alt="solo-levelling-wallpaper"
+          src={"/images/wallpaper-5.png"}
+          priority
+          blurDataURL={"/images/wallpaper-5-lqip.jpg"}
+          placeholder="blur"
+          quality={100}
+          fill
+          sizes="100vw"
+          style={{ objectFit: "cover" }}
+        />
+        <SmallScreenAlert />
         <WelcomeText />
         <Docker />
         <Desktop />
