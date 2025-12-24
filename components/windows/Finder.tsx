@@ -114,122 +114,34 @@ const Finder = ({ timeline }: GSAPTimeline) => {
       });
   }, [timeline]);
   return (
-    <>
-      <div id="finder" className="absolute opacity-100">
-        <svg
-          width="100%"
-          viewBox="0 0 100 5"
-          className="absolute -top-8  svg-glow
-"
-        >
-          <polygon
-            className="fill-[#1463B3] stroke-[0.3] stroke-[#55C9FD] opacity-80
-            glass-edge
-            "
-            points="
-      0,0
-      100,0
-      96,3
-      20,3
-      15,1
-      0,1
-      0,0
-    "
-          />
-        </svg>
-        <svg
-          width="100%"
-          viewBox="0 0 100 5"
-          className="absolute -bottom-10 svg-glow"
-        >
-          <polygon
-            className="fill-[#1463B3] stroke-[0.3] stroke-[#55C9FD] opacity-80
-            glass-edge
-            "
-            points="
-      0,0
-      6,0
-      7.7 , 1
-      14.3 , 1
-      16 , 0
-      100,0
-      100,2.5
-      20,2.5
-      7.5,2.5
-      5 , 1
-      0.75, 1
-      0,0
-    "
-          />
-        </svg>
-        <div className="h-fit w-fit py-3 px-10">
-          <div
-            id="screen-finder"
-            ref={screenRef}
-            className=" w-200 relative backdrop-blur-sm py-5 px-20"
-          >
-            <Image
-              alt="ui-background"
-              src="/images/solo-levelling-background.png"
-              quality={100}
-              fill
-              sizes="100vw"
-              style={{
-                objectFit: "cover",
-              }}
-              className="absolute -z-2 opacity-85 "
-            />
-            <div
-              id="controls-finder"
-              ref={controlsRef}
-              className="flex justify-between mb-2 "
-            >
-              <WindowControls windowId={WindowId.Finder} />
-              <p className="text-glow">{WindowId.Finder}</p>
-            </div>
-            <div
-              ref={contentRef}
-              id="content-finder"
-              className="flex flex-row bg-[rgba(0,0,0,0.5)]"
-            >
-              <div className="sidebar">
-                {renderList("Favourites", ROOT_LOCATION)}
-                {WORK_LOCATION.children ? (
-                  renderList("Projects", WORK_LOCATION.children)
-                ) : (
-                  <></>
-                )}
-              </div>
-              <div className="content">{renderFolders(currentLocation)}</div>
-            </div>
-          </div>
-        </div>
+    <div ref={screenRef} className="window-screen">
+      <Image
+        alt="ui-background"
+        src="/images/solo-levelling-background.png"
+        quality={100}
+        fill
+        sizes="100vw"
+        style={{
+          objectFit: "cover",
+        }}
+        className="absolute -z-2 opacity-85 "
+      />
+      <div ref={controlsRef} className="flex justify-between mb-2 ">
+        <WindowControls windowId={WindowId.Finder} />
+        <p className="text-glow">{WindowId.Finder}</p>
       </div>
-      <svg>
-        <defs>
-          <filter
-            id="system-border-filter"
-            x="-10%"
-            y="-20%"
-            width="200%"
-            height="200%"
-          >
-            <feTurbulence
-              baseFrequency="0.4 0.01"
-              result="NOISE"
-              numOctaves="2"
-            />
-            <feDisplacementMap
-              in="SourceGraphic"
-              in2="NOISE"
-              scale="-35"
-              xChannelSelector="R"
-              yChannelSelector="R"
-            ></feDisplacementMap>
-          </filter>
-        </defs>
-      </svg>
-    </>
+      <div ref={contentRef} className="flex flex-row bg-[rgba(0,0,0,0.5)]">
+        <div className="sidebar">
+          {renderList("Favourites", ROOT_LOCATION)}
+          {WORK_LOCATION.children ? (
+            renderList("Projects", WORK_LOCATION.children)
+          ) : (
+            <></>
+          )}
+        </div>
+        <div className="content">{renderFolders(currentLocation)}</div>
+      </div>
+    </div>
   );
 };
 const FinderWindow = withAppWindow(Finder, WindowId.Finder);

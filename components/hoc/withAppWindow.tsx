@@ -17,18 +17,22 @@ export function withAppWindow<P extends object>(
     const { windows, focusWindow } = useWindowStore();
     const windowConfig = windows[windowId];
     const [tl, setTl] = useState<GSAPTimeline>();
+
     useGSAP(() => {
-      const tl = gsap.timeline();
       Draggable.create(`#window-${windowId}`, {
         // bounds: document.getElementById("main-container"),
         onPress: () => focusWindow(windowId),
       });
+
+      const tl = gsap.timeline();
+
       if (windowConfig?.isOpen) {
         tl.to(`#window-${windowId}`, {
           opacity: 100,
           duration: 0.2,
           ease: "elastic.inOut",
         });
+
         setTl(tl);
       } else if (!windowConfig?.isOpen) {
         tl.to(`#window-${windowId}`, {
@@ -36,6 +40,7 @@ export function withAppWindow<P extends object>(
           duration: 0.2,
           ease: "elastic.inOut",
         });
+
         setTl(tl);
       }
     }, [windowConfig?.isOpen]);
@@ -44,14 +49,83 @@ export function withAppWindow<P extends object>(
       <>
         {windowConfig?.isOpen ? (
           <div
-            className={clsx("absolute opacity-0 ", {
-              // block: windowConfig?.isOpen,
-              // hidden: !windowConfig?.isOpen,
-            })}
+            className={clsx("absolute opacity-0 ", {})}
             style={{ zIndex: windowConfig.zIndex }}
             id={`window-${windowId}`}
           >
-            <WrappedComponent {...props} timeline={tl} />
+            <div id={`${windowId}`}>
+              <svg
+                width="100%"
+                viewBox="0 0 100 5"
+                className="absolute -top-8  svg-glow
+"
+              >
+                <polygon
+                  className="fill-[#1463B3] stroke-[0.3] stroke-[#55C9FD] opacity-80
+            glass-edge
+            "
+                  points="
+      0,0
+      100,0
+      96,3
+      20,3
+      15,1
+      0,1
+      0,0
+    "
+                />
+              </svg>
+              <svg
+                width="100%"
+                viewBox="0 0 100 5"
+                className="absolute -bottom-10 svg-glow"
+              >
+                <polygon
+                  className="fill-[#1463B3] stroke-[0.3] stroke-[#55C9FD] opacity-80
+            glass-edge
+            "
+                  points="
+      0,0
+      6,0
+      7.7 , 1
+      14.3 , 1
+      16 , 0
+      100,0
+      100,2.5
+      20,2.5
+      7.5,2.5
+      5 , 1
+      0.75, 1
+      0,0
+    "
+                />
+              </svg>
+              <WrappedComponent {...props} timeline={tl} />
+            </div>
+            <svg>
+              <defs>
+                <filter
+                  id="system-border-filter"
+                  x="-10%"
+                  y="-20%"
+                  width="200%"
+                  height="200%"
+                >
+                  <feTurbulence
+                    baseFrequency="0.4 0.01"
+                    result="NOISE"
+                    numOctaves="2"
+                  />
+                  <feDisplacementMap
+                    in="SourceGraphic"
+                    in2="NOISE"
+                    scale="-35"
+                    xChannelSelector="R"
+                    yChannelSelector="R"
+                  ></feDisplacementMap>
+                </filter>
+              </defs>
+            </svg>
           </div>
         ) : (
           <></>

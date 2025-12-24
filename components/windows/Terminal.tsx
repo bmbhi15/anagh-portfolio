@@ -3,14 +3,38 @@ import { techStack } from "@/lib/constants";
 import { withAppWindow } from "../hoc/withAppWindow";
 import { WindowId } from "@/lib/constants";
 import WindowControls from "../ui/WindowControls";
-const Terminal = () => {
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+const Terminal = ({ timeline }: GSAPTimeline) => {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const screenRef = useRef<HTMLDivElement>(null);
+  const controlsRef = useRef<HTMLDivElement>(null);
+  useGSAP(() => {
+    if (!timeline) return;
+    timeline
+      .to(screenRef.current, {
+        height: 500,
+        duration: 0.2,
+        ease: "power1.in.out",
+        delay: 0.1,
+      })
+      .to(contentRef.current, {
+        opacity: 100,
+        duration: 2,
+      })
+      .to(controlsRef.current, {
+        opacity: 100,
+        duration: 2,
+        delay: -2,
+      });
+  }, [timeline]);
   return (
-    <div id="terminal">
-      <div id="window-header">
+    <div ref={screenRef} className="window-screen">
+      <div ref={controlsRef} id="window-header">
         <WindowControls windowId={WindowId.Terminal} />
         <p className="col-center text-glow">Terminal</p>
       </div>
-      <section>
+      <section ref={contentRef}>
         <header className="terminal-header">
           <div className="identity">
             <p>anagh@macbook-pro</p>
