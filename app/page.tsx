@@ -12,6 +12,7 @@ import TxtFileWindow from "@/components/windows/TxtFile";
 import ImgFileWindow from "@/components/windows/ImgFile";
 import { useWebgl } from "@/lib/hooks/useWebgl";
 import SmallScreenAlert from "@/components/ui/small-screen-alert";
+import PixelSnow from "@/components/three/pixel-snow/PixelSnow";
 
 // import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
@@ -66,6 +67,30 @@ function Home() {
         // }}
       /> */}
       <canvas id="smoke-canvas"></canvas>
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          zIndex: 0,
+        }}
+      >
+        <PixelSnow
+          variant="round"
+          color="#afe8e2"
+          flakeSize={0.01}
+          minFlakeSize={1.25}
+          pixelResolution={1000}
+          speed={1.25}
+          density={0.25}
+          direction={125}
+          brightness={1}
+          farPlane={20}
+          depthFade={8}
+        />
+      </div>
     </>
   );
 }
