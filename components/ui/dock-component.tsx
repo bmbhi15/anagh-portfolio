@@ -15,9 +15,11 @@ import {
 import { Children, cloneElement, ReactElement, useMemo, useRef } from "react";
 
 import "./dock-component.css";
-
+type InjectedProps = {
+  isHovered: MotionValue<number>;
+};
 interface DockItemProps {
-  children: ReactElement;
+  children: ReactElement<InjectedProps>;
   className?: string;
   onClick: () => void;
   mouseX: MotionValue<number>;
