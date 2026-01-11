@@ -1,7 +1,7 @@
 "use client";
+
 import NavBar from "@/components/NavBar";
 import WelcomeText from "@/components/WelcomeText";
-import Docker from "@/components/Docker";
 import Desktop from "@/components/Desktop";
 import TerminalWindow from "@/components/windows/Terminal";
 import SafariWindow from "@/components/windows/Safari";
@@ -12,10 +12,11 @@ import TxtFileWindow from "@/components/windows/TxtFile";
 import ImgFileWindow from "@/components/windows/ImgFile";
 import { useWebgl } from "@/lib/hooks/useWebgl";
 import SmallScreenAlert from "@/components/ui/small-screen-alert";
-import PixelSnow from "@/components/three/pixel-snow/PixelSnow";
+import PixelSnow from "@/components/react-bits/three/pixel-snow/PixelSnow";
 
 // import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import Docker from "@/components/Docker";
 
 function Home() {
   useWebgl();

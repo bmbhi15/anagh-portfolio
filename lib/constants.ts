@@ -65,7 +65,7 @@ interface DockStaticApp {
   canOpen: false;
 }
 
-type DockApp = DockWindowApp | DockStaticApp;
+export type DockApp = DockWindowApp | DockStaticApp;
 
 const dockApps: DockApp[] = [
   {

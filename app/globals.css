@@ -265,7 +265,7 @@ body {
     @apply absolute bottom-5 left-1/2 -translate-x-1/2  z-4000 select-none max-sm:hidden rounded-3xl 3xl:rounded-full glow-container;
 
     .dock-container {
-      @apply justify-between rounded-3xl 3xl:rounded-4xl px-5 p-3  3xl:px-10 3xl:p-5 flex items-end  glass-background-1;
+      @apply flex justify-between gap-5 w-fit rounded-3xl 3xl:rounded-4xl px-5 p-3  3xl:px-10 3xl:p-5  items-end  glass-background-1;
     }
 
     .tooltip {
